@@ -11,6 +11,29 @@
 		BF83A5FF27E2827E007035A7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A5FE27E2827E007035A7 /* ContentView.swift */; };
 		BF83A60127E28280007035A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF83A60027E28280007035A7 /* Assets.xcassets */; };
 		BF83A60427E28280007035A7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF83A60327E28280007035A7 /* Preview Assets.xcassets */; };
+		BF83A61027E28304007035A7 /* AppStatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A60A27E28304007035A7 /* AppStatusBarView.swift */; };
+		BF83A62A27E284D3007035A7 /* MainViewTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A62527E284D3007035A7 /* MainViewTwo.swift */; };
+		BF83A62B27E284D3007035A7 /* MainMenuContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A62627E284D3007035A7 /* MainMenuContainerView.swift */; };
+		BF83A62C27E284D3007035A7 /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A62727E284D3007035A7 /* ContainerView.swift */; };
+		BF83A62D27E284D3007035A7 /* TabBarContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A62827E284D3007035A7 /* TabBarContainerView.swift */; };
+		BF83A62E27E284D3007035A7 /* MainViewOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A62927E284D3007035A7 /* MainViewOne.swift */; };
+		BF83A63527E28500007035A7 /* CustomTextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A63127E28500007035A7 /* CustomTextFields.swift */; };
+		BF83A63627E28500007035A7 /* UTCDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A63227E28500007035A7 /* UTCDate.swift */; };
+		BF83A63D27E2855F007035A7 /* LeftMenuListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A63A27E2855F007035A7 /* LeftMenuListRowView.swift */; };
+		BF83A63E27E2855F007035A7 /* LeftMenuNavigationItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A63B27E2855F007035A7 /* LeftMenuNavigationItemModel.swift */; };
+		BF83A63F27E2855F007035A7 /* LeftMenuNavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A63C27E2855F007035A7 /* LeftMenuNavigationViewModel.swift */; };
+		BF83A64127E28566007035A7 /* LeftMenuNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A64027E28566007035A7 /* LeftMenuNavigationBarView.swift */; };
+		BF83A64727E285F9007035A7 /* PhotosPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A64527E285F8007035A7 /* PhotosPage.swift */; };
+		BF83A64827E285F9007035A7 /* ImagePickerCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A64627E285F9007035A7 /* ImagePickerCoordinator.swift */; };
+		BF83A64D27E28600007035A7 /* ChecklistItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A64927E28600007035A7 /* ChecklistItemModel.swift */; };
+		BF83A64E27E28600007035A7 /* ChecklistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A64A27E28600007035A7 /* ChecklistViewModel.swift */; };
+		BF83A64F27E28600007035A7 /* ChecklistRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A64B27E28600007035A7 /* ChecklistRowView.swift */; };
+		BF83A65027E28600007035A7 /* ChecklistPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A64C27E28600007035A7 /* ChecklistPageView.swift */; };
+		BF83A65427E2866E007035A7 /* LeftMenuTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A65227E2866D007035A7 /* LeftMenuTabBarView.swift */; };
+		BF83A65527E2866E007035A7 /* TabBarItemsPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A65327E2866E007035A7 /* TabBarItemsPreferenceKey.swift */; };
+		BF83A65827E286A3007035A7 /* ChecklistAddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A65727E286A3007035A7 /* ChecklistAddItemView.swift */; };
+		BF83A65C27E286BC007035A7 /* MarqueeTextScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A65A27E286BC007035A7 /* MarqueeTextScrollView.swift */; };
+		BF83A65D27E286BC007035A7 /* ShapeViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF83A65B27E286BC007035A7 /* ShapeViewExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +42,29 @@
 		BF83A5FE27E2827E007035A7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BF83A60027E28280007035A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF83A60327E28280007035A7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BF83A60A27E28304007035A7 /* AppStatusBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStatusBarView.swift; sourceTree = "<group>"; };
+		BF83A62527E284D3007035A7 /* MainViewTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewTwo.swift; sourceTree = "<group>"; };
+		BF83A62627E284D3007035A7 /* MainMenuContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuContainerView.swift; sourceTree = "<group>"; };
+		BF83A62727E284D3007035A7 /* ContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
+		BF83A62827E284D3007035A7 /* TabBarContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarContainerView.swift; sourceTree = "<group>"; };
+		BF83A62927E284D3007035A7 /* MainViewOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewOne.swift; sourceTree = "<group>"; };
+		BF83A63127E28500007035A7 /* CustomTextFields.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextFields.swift; sourceTree = "<group>"; };
+		BF83A63227E28500007035A7 /* UTCDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UTCDate.swift; sourceTree = "<group>"; };
+		BF83A63A27E2855F007035A7 /* LeftMenuListRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuListRowView.swift; sourceTree = "<group>"; };
+		BF83A63B27E2855F007035A7 /* LeftMenuNavigationItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuNavigationItemModel.swift; sourceTree = "<group>"; };
+		BF83A63C27E2855F007035A7 /* LeftMenuNavigationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuNavigationViewModel.swift; sourceTree = "<group>"; };
+		BF83A64027E28566007035A7 /* LeftMenuNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuNavigationBarView.swift; sourceTree = "<group>"; };
+		BF83A64527E285F8007035A7 /* PhotosPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosPage.swift; sourceTree = "<group>"; };
+		BF83A64627E285F9007035A7 /* ImagePickerCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerCoordinator.swift; sourceTree = "<group>"; };
+		BF83A64927E28600007035A7 /* ChecklistItemModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItemModel.swift; sourceTree = "<group>"; };
+		BF83A64A27E28600007035A7 /* ChecklistViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistViewModel.swift; sourceTree = "<group>"; };
+		BF83A64B27E28600007035A7 /* ChecklistRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistRowView.swift; sourceTree = "<group>"; };
+		BF83A64C27E28600007035A7 /* ChecklistPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistPageView.swift; sourceTree = "<group>"; };
+		BF83A65227E2866D007035A7 /* LeftMenuTabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuTabBarView.swift; sourceTree = "<group>"; };
+		BF83A65327E2866E007035A7 /* TabBarItemsPreferenceKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarItemsPreferenceKey.swift; sourceTree = "<group>"; };
+		BF83A65727E286A3007035A7 /* ChecklistAddItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistAddItemView.swift; sourceTree = "<group>"; };
+		BF83A65A27E286BC007035A7 /* MarqueeTextScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarqueeTextScrollView.swift; sourceTree = "<group>"; };
+		BF83A65B27E286BC007035A7 /* ShapeViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeViewExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +99,12 @@
 			children = (
 				BF83A5FC27E2827E007035A7 /* UILayoutProjectApp.swift */,
 				BF83A5FE27E2827E007035A7 /* ContentView.swift */,
+				BF83A60A27E28304007035A7 /* AppStatusBarView.swift */,
+				BF83A61A27E2848E007035A7 /* ContainerMainViews */,
+				BF83A63827E28519007035A7 /* LeftMenuSideba */,
+				BF83A65627E28692007035A7 /* Settings */,
+				BF83A65927E286AB007035A7 /* View Extensions */,
+				BF83A62F27E284EE007035A7 /* Helper Files */,
 				BF83A60027E28280007035A7 /* Assets.xcassets */,
 				BF83A60227E28280007035A7 /* Preview Content */,
 			);
@@ -65,6 +117,103 @@
 				BF83A60327E28280007035A7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		BF83A61A27E2848E007035A7 /* ContainerMainViews */ = {
+			isa = PBXGroup;
+			children = (
+				BF83A62727E284D3007035A7 /* ContainerView.swift */,
+				BF83A62627E284D3007035A7 /* MainMenuContainerView.swift */,
+				BF83A62927E284D3007035A7 /* MainViewOne.swift */,
+				BF83A62527E284D3007035A7 /* MainViewTwo.swift */,
+				BF83A62827E284D3007035A7 /* TabBarContainerView.swift */,
+			);
+			path = ContainerMainViews;
+			sourceTree = "<group>";
+		};
+		BF83A62F27E284EE007035A7 /* Helper Files */ = {
+			isa = PBXGroup;
+			children = (
+				BF83A63127E28500007035A7 /* CustomTextFields.swift */,
+				BF83A63227E28500007035A7 /* UTCDate.swift */,
+			);
+			path = "Helper Files";
+			sourceTree = "<group>";
+		};
+		BF83A63827E28519007035A7 /* LeftMenuSideba */ = {
+			isa = PBXGroup;
+			children = (
+				BF83A63927E28541007035A7 /* LeftMenuNavigationBars */,
+				BF83A64227E285C3007035A7 /* LeftMenuPageViews */,
+				BF83A64027E28566007035A7 /* LeftMenuNavigationBarView.swift */,
+				BF83A65127E28652007035A7 /* LeftMenuTabBar */,
+			);
+			path = LeftMenuSideba;
+			sourceTree = "<group>";
+		};
+		BF83A63927E28541007035A7 /* LeftMenuNavigationBars */ = {
+			isa = PBXGroup;
+			children = (
+				BF83A63A27E2855F007035A7 /* LeftMenuListRowView.swift */,
+				BF83A63B27E2855F007035A7 /* LeftMenuNavigationItemModel.swift */,
+				BF83A63C27E2855F007035A7 /* LeftMenuNavigationViewModel.swift */,
+			);
+			path = LeftMenuNavigationBars;
+			sourceTree = "<group>";
+		};
+		BF83A64227E285C3007035A7 /* LeftMenuPageViews */ = {
+			isa = PBXGroup;
+			children = (
+				BF83A64327E285D2007035A7 /* ChecklistPage */,
+				BF83A64427E285E3007035A7 /* PhotosPage */,
+			);
+			path = LeftMenuPageViews;
+			sourceTree = "<group>";
+		};
+		BF83A64327E285D2007035A7 /* ChecklistPage */ = {
+			isa = PBXGroup;
+			children = (
+				BF83A64927E28600007035A7 /* ChecklistItemModel.swift */,
+				BF83A64C27E28600007035A7 /* ChecklistPageView.swift */,
+				BF83A64B27E28600007035A7 /* ChecklistRowView.swift */,
+				BF83A64A27E28600007035A7 /* ChecklistViewModel.swift */,
+			);
+			path = ChecklistPage;
+			sourceTree = "<group>";
+		};
+		BF83A64427E285E3007035A7 /* PhotosPage */ = {
+			isa = PBXGroup;
+			children = (
+				BF83A64627E285F9007035A7 /* ImagePickerCoordinator.swift */,
+				BF83A64527E285F8007035A7 /* PhotosPage.swift */,
+			);
+			path = PhotosPage;
+			sourceTree = "<group>";
+		};
+		BF83A65127E28652007035A7 /* LeftMenuTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				BF83A65227E2866D007035A7 /* LeftMenuTabBarView.swift */,
+				BF83A65327E2866E007035A7 /* TabBarItemsPreferenceKey.swift */,
+			);
+			path = LeftMenuTabBar;
+			sourceTree = "<group>";
+		};
+		BF83A65627E28692007035A7 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				BF83A65727E286A3007035A7 /* ChecklistAddItemView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		BF83A65927E286AB007035A7 /* View Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BF83A65A27E286BC007035A7 /* MarqueeTextScrollView.swift */,
+				BF83A65B27E286BC007035A7 /* ShapeViewExtensions.swift */,
+			);
+			path = "View Extensions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +232,8 @@
 			dependencies = (
 			);
 			name = UILayoutProject;
+			packageProductDependencies = (
+			);
 			productName = UILayoutProject;
 			productReference = BF83A5F927E2827E007035A7 /* UILayoutProject.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +262,8 @@
 				Base,
 			);
 			mainGroup = BF83A5F027E2827E007035A7;
+			packageReferences = (
+			);
 			productRefGroup = BF83A5FA27E2827E007035A7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,7 +290,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF83A65427E2866E007035A7 /* LeftMenuTabBarView.swift in Sources */,
+				BF83A63E27E2855F007035A7 /* LeftMenuNavigationItemModel.swift in Sources */,
+				BF83A62B27E284D3007035A7 /* MainMenuContainerView.swift in Sources */,
+				BF83A64827E285F9007035A7 /* ImagePickerCoordinator.swift in Sources */,
+				BF83A65827E286A3007035A7 /* ChecklistAddItemView.swift in Sources */,
+				BF83A65D27E286BC007035A7 /* ShapeViewExtensions.swift in Sources */,
+				BF83A61027E28304007035A7 /* AppStatusBarView.swift in Sources */,
+				BF83A64F27E28600007035A7 /* ChecklistRowView.swift in Sources */,
+				BF83A62A27E284D3007035A7 /* MainViewTwo.swift in Sources */,
+				BF83A64727E285F9007035A7 /* PhotosPage.swift in Sources */,
+				BF83A63627E28500007035A7 /* UTCDate.swift in Sources */,
+				BF83A64D27E28600007035A7 /* ChecklistItemModel.swift in Sources */,
+				BF83A62D27E284D3007035A7 /* TabBarContainerView.swift in Sources */,
+				BF83A64E27E28600007035A7 /* ChecklistViewModel.swift in Sources */,
 				BF83A5FF27E2827E007035A7 /* ContentView.swift in Sources */,
+				BF83A62E27E284D3007035A7 /* MainViewOne.swift in Sources */,
+				BF83A63F27E2855F007035A7 /* LeftMenuNavigationViewModel.swift in Sources */,
+				BF83A65527E2866E007035A7 /* TabBarItemsPreferenceKey.swift in Sources */,
+				BF83A65C27E286BC007035A7 /* MarqueeTextScrollView.swift in Sources */,
+				BF83A63527E28500007035A7 /* CustomTextFields.swift in Sources */,
+				BF83A64127E28566007035A7 /* LeftMenuNavigationBarView.swift in Sources */,
+				BF83A65027E28600007035A7 /* ChecklistPageView.swift in Sources */,
+				BF83A62C27E284D3007035A7 /* ContainerView.swift in Sources */,
+				BF83A63D27E2855F007035A7 /* LeftMenuListRowView.swift in Sources */,
 				BF83A5FD27E2827E007035A7 /* UILayoutProjectApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

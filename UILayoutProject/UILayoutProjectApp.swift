@@ -9,9 +9,15 @@ import SwiftUI
 
 @main
 struct UILayoutProjectApp: App {
+    @State var leftMenuNavigationViewModel: LeftMenuNavigationViewModel = LeftMenuNavigationViewModel()
+    @State var listViewModel: ChecklistViewModel = ChecklistViewModel()
+    
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(listViewModel)
+                .environmentObject(leftMenuNavigationViewModel)
         }
     }
 }
