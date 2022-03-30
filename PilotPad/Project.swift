@@ -74,7 +74,10 @@ let mainAppTarget = Target(
   product: .app,
   bundleId: "com.petersirany.pilotpad",
   infoPlist: .extendingDefault(with: infoPlist),
-  sources: .paths(["Targets/Sources/**"]),
+  sources: .paths(["Targets/PilotPad/Sources/**"]),
+  resources: [
+    "Targets/PilotPad/Resources/**"
+  ],
   dependencies: [.target(name: "Common"), .target(name: "ViewModels"), .target(name: "Models"), .target(name: "Views")]
 )
 
