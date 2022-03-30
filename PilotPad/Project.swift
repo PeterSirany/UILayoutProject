@@ -85,7 +85,11 @@ let project = Project(
   name: "PilotPad",
   organizationName: "Peter.Sirany",
   options: .options(
-    automaticSchemesOptions: .disabled,
+    automaticSchemesOptions: .enabled(
+      targetSchemesGrouping: .singleScheme,
+      codeCoverageEnabled: false,
+      testingOptions: .parallelizable
+    ),
     developmentRegion: nil,
     disableBundleAccessors: false,
     disableShowEnvironmentVarsInScriptPhases: false,
