@@ -1,29 +1,6 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
 
-/*
-                +-------------+
-                |             |
-                |     App     | Contains PilotPad App target and PilotPad unit-test target
-                |             |
-         +------+-------------+-------+
-         |         depends on         |
-         |                            |
- +----v-----+                   +-----v-----+
- |          |                   |           |
- |   Kit    |                   |     UI    |   Two independent frameworks to share code and start modularising your app
- |          |                   |           |
- +----------+                   +-----------+
-
- */
-
-// MARK: - Project
-
-// Creates our project using a helper function defined in ProjectDescriptionHelpers
-//let project = Project.app(name: "PilotPad",
-//                          platform: .iOS,
-//                          additionalTargets: ["PilotPadKit", "PilotPadUI"])
-
 let infoPlist: [String: InfoPlist.Value] = [
     "CFBundleShortVersionString": "1.0",
     "CFBundleVersion": "1",
