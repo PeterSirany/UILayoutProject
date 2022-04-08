@@ -9,29 +9,29 @@ import Foundation
 import Models
 
 public class ChecklistViewModel: ObservableObject {
-    
-    @Published public var checklistItems: [ChecklistItemModel] = []
-    
+	
+	@Published public var checklistItems: [ChecklistItemModel] = []
+	
 	public init() {
-        getItems()
-    }
-    
+		getItems()
+	}
+	
 	public func getItems() {
-        let newItems = [
-            ChecklistItemModel(title: "1st", isComplete: true),
-            ChecklistItemModel(title: "Checklist Item 2", isComplete: true),
-            ChecklistItemModel(title: "Third", isComplete: false),
-            ChecklistItemModel(title: "Fourth Item", isComplete: false),
-            ChecklistItemModel(title: "Last Item", isComplete: false),
-        ]
-        
-        checklistItems.append(contentsOf: newItems)
-    }
-    
+		let newItems = [
+			ChecklistItemModel(title: "1st", isComplete: true),
+			ChecklistItemModel(title: "Checklist Item 2", isComplete: true),
+			ChecklistItemModel(title: "Third", isComplete: false),
+			ChecklistItemModel(title: "Fourth Item", isComplete: false),
+			ChecklistItemModel(title: "Last Item", isComplete: false),
+		]
+		
+		checklistItems.append(contentsOf: newItems)
+	}
+	
 	public func updateChecklistItem(item: ChecklistItemModel) {
-        if let index = checklistItems.firstIndex(where: { $0.id == item.id})
-        {
-            checklistItems[index] = item.updateCompletion()
-        }
-    }
+		if let index = checklistItems.firstIndex(where: { $0.id == item.id})
+		{
+			checklistItems[index] = item.updateCompletion()
+		}
+	}
 }
