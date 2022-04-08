@@ -61,11 +61,8 @@ public struct CustomTextFields: View {
 				.frame(width: 123, height:36.0)
 				.background(
 					// Add the outline
-					RoundedRectangle(cornerRadius: 8).stroke(textFieldNumberIsFocused ? Color.warningAlertColor : (textFieldData.isEmpty ? Color.preliminaryTextColor : Color.blueBorderColor), lineWidth: 1))
-				//                    .stroke(LinearGradient(gradient: gradientColors,
-				//                                           startPoint: UnitPoint(x: 0.15, y: 0.5),
-				//                                           endPoint: UnitPoint(x: 0.7, y: 0.5)), lineWidth: 1)
-				
+					RoundedRectangle(cornerRadius: 8)
+						.stroke(textFieldNumberIsFocused ? Color.warningAlertColor : (textFieldData.isEmpty ? Color.preliminaryTextColor : Color.blueBorderColor), lineWidth: 1))
 				
 				Text("\(textFieldLabel)")
 					.font(.caption2)

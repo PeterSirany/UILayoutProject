@@ -11,15 +11,17 @@ import ViewModels
 
 @main
 struct UILayoutProjectApp: App {
-    @State var leftMenuNavigationViewModel: LeftMenuNavigationViewModel = LeftMenuNavigationViewModel()
-    @State var listViewModel: ChecklistViewModel = ChecklistViewModel()
-    
-    
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .environmentObject(listViewModel)
-                .environmentObject(leftMenuNavigationViewModel)
-        }
-    }
+	@State var leftMenuNavigationViewModel: LeftMenuNavigationViewModel = LeftMenuNavigationViewModel()
+	@State var listViewModel: ChecklistViewModel = ChecklistViewModel()
+	
+	let persistenceController = PersistenceController.shared
+	
+	var body: some Scene {
+		WindowGroup {
+			ContentView()
+				.environment(\.managedObjectContext, persistenceController.container.viewContext)
+				.environmentObject(listViewModel)
+				.environmentObject(leftMenuNavigationViewModel)
+		}
+	}
 }

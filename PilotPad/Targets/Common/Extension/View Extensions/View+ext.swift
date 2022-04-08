@@ -21,4 +21,18 @@ public extension View {
 																endPoint: .bottomTrailing))
 			.mask(self)
 	}
+	
+	func setWidth(_ width: CGFloat) -> some View {
+		self
+			.frame(width: width)
+	}
+	
+	func addRoundedCornerStrokeBorder(color: Color) -> some View {
+		self
+			.background(
+				RoundedRectangle(cornerRadius: 8)
+					.stroke(color, lineWidth: 1)
+			)
+	}
+	
 }
