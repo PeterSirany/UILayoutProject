@@ -18,17 +18,17 @@ public class CreateNewFlapsSpeedItemsModel: ObservableObject {
 		self.items = [.init(position: nil, speed: nil)]
 	}
 	
-	func addItem() {
+	public func addItem() {
 		self.items.append(.init(position: nil, speed: nil))
 	}
 	
-	func submitPositionValue(position: String, for id: UUID) {
+	public func submitPositionValue(position: String, for id: UUID) {
 		if let item = items.first(where: { $0.id == id }) {
 			item.position = Int(position) ?? 0
 		}
 	}
 	
-	func submitSpeedValue(speed: String, for id: UUID) {
+	public func submitSpeedValue(speed: String, for id: UUID) {
 		if let item = items.first(where: { $0.id == id }) {
 			item.speed = Int(speed) ?? 0
 		}
