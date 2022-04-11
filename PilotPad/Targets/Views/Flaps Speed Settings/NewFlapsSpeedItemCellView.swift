@@ -51,29 +51,3 @@ struct NewFlapsSpeedItemCellView_Previews: PreviewProvider {
 		.preferredColorScheme(.dark)
 	}
 }
-
-struct SimpleTextField: View {
-	
-	@State var text: String = ""
-	var title: String
-	var placeholder: String
-	var onCommitText: (String) -> Void
-	
-	var body: some View {
-		VStack(alignment: .leading, spacing: 8) {
-			Text(title)
-				.lineLimit(1)
-				.minimumScaleFactor(0.5)
-				.font(.system(size: 13))
-			TextField(placeholder, text: $text)
-				.font(.system(size: 12))
-				.onSubmit {
-					self.onCommitText(text)
-				}
-		}
-		.padding(8)
-		.addRoundedCornerStrokeBorder(color: text.isEmpty ? Color.preliminaryTextColor : Color.blueBorderColor)
-//		.addRoundedCornerStrokeBorder(color: textFieldNumberIsFocused ? Color.warningAlertColor : (textFieldData.isEmpty ? Color.preliminaryTextColor : Color.blueBorderColor), lineWidth: 1)))
-		
-	}
-}
