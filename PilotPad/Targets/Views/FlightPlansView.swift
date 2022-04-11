@@ -9,30 +9,47 @@
 import SwiftUI
 import Models
 
-struct FlightPlansView: View {
-	@ObservedObject var model: FlightPlansModel
+public struct FlightPlansView: View {
+	@ObservedObject public var model: FlightPlansModel
 	
-    var body: some View {
-//        SectionContainer(
-//					sectionTitle: "FLight Plans",
-//					contentView: getContent(),
-//					titleAccessoryView: { AddButtonView(action: { print("Add Flight Plan") }) }
-//				)
-			Text("")
-    }
+	public init(model: FlightPlansModel) {
+		self.model = model
+	}
+	
+	public var body: some View {
+		SectionContainer(
+			sectionTitle: "Flight Plans",
+			contentView: {
+				getContent()
+			},
+			titleAccessoryView: {
+				EmptyView()
+			}
+		)
+	}
 	
 	@ViewBuilder
 	func getContent() -> some View {
 		List {
 			ForEach(model.items) {
 				FlightPlanItemCellView(item: $0)
+					.listRowInsets(EdgeInsets())
+					.listRowSeparator(.hidden)
+					.padding([.leading, .trailing, .bottom])
+					.background(Color.clear)
 			}
+			.onDelete { _ in
+					print("Delete called")
+			}
+			.background(Color.clear)
 		}
+		.background(Color.clear)
+		.listStyle(PlainListStyle())
 	}
 }
 
 struct FlightPlansView_Previews: PreviewProvider {
-    static var previews: some View {
-			FlightPlansView(model: .init())
-    }
+	static var previews: some View {
+		FlightPlansView(model: .init())
+	}
 }

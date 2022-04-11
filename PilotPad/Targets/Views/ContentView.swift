@@ -42,8 +42,13 @@ public struct ContentView : View {
 						AppStatusBarView(statusBarViewsText: String("This will contain a string of scrolling information for each view"))
 						
 						TabView {
-							MainMenuContainerView()
-								.padding(.horizontal, 12)
+							ScrollView {
+								FlightPlansView(model: .init())
+									.frame(height: 250)
+								MainMenuContainerView()
+									.padding(.horizontal, 12)
+									.padding(.bottom, 12)
+							}.padding(.horizontal, 12)
 								.padding(.bottom, 12)
 							
 							MainViewOne()

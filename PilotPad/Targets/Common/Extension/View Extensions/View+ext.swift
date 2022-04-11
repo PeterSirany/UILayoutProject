@@ -34,5 +34,14 @@ public extension View {
 					.stroke(color, lineWidth: 1)
 			)
 	}
+	func addRoundedCornerStrokeBorder(strokeColor: Color, backgroundColor: Color) -> some View {
+		self
+			.background(
+				RoundedRectangle(cornerRadius: 8)
+					.stroke(strokeColor, lineWidth: 2)
+					.background(backgroundColor)
+			)
+			.cornerRadius(8)
+	}
 	
 }

@@ -14,26 +14,47 @@ public class FlightPlansModel: ObservableObject {
 	@Published public var items: [FlightPlanItem]
 	
 	public init() {
-		self.items = []
+		self.items = [
+			.init(
+				flightNumber: "56",
+				departureAirportCallsign: "kLAX",
+				arrivalAirportCallsign: "CMH",
+				departureDateString: "Apr 10, 22",
+				arrivalDateString: "Apr 10, 22"
+			),
+			.init(
+				flightNumber: "224",
+				departureAirportCallsign: "kLAX",
+				arrivalAirportCallsign: "CMH",
+				departureDateString: "Apr 15, 22",
+				arrivalDateString: "Apr 16, 22"
+			),
+			.init(
+				flightNumber: "435",
+				departureAirportCallsign: "kLAX",
+				arrivalAirportCallsign: "CMH",
+				departureDateString: "Apr 30, 22",
+				arrivalDateString: "Apr 31, 22"
+			)]
 	}
 }
 
 
 public class FlightPlanItem: Identifiable {
-	public init(flightNumber: String, departureAirportCallsign: String, arrivalAirportCallsign: String, departureAirportArrivalDateString: String, arrivalAirportArrivalDateString: String) {
+	internal init(flightNumber: String, departureAirportCallsign: String, arrivalAirportCallsign: String, departureDateString: String, arrivalDateString: String) {
 		self.flightNumber = flightNumber
 		self.departureAirportCallsign = departureAirportCallsign
 		self.arrivalAirportCallsign = arrivalAirportCallsign
-		self.departureAirportArrivalDateString = departureAirportArrivalDateString
-		self.arrivalAirportArrivalDateString = arrivalAirportArrivalDateString
+		self.departureDateString = departureDateString
+		self.arrivalDateString = arrivalDateString
 	}
 	
 	public let id: UUID = .init()
 	public let flightNumber: String
 	public let departureAirportCallsign: String
 	public let arrivalAirportCallsign: String
-	public let departureAirportArrivalDateString: String
-	public let arrivalAirportArrivalDateString: String
+	public let departureDateString: String
+	public let arrivalDateString: String
 }
 
 extension FlightPlanItem {
@@ -42,8 +63,8 @@ extension FlightPlanItem {
 			flightNumber: "123",
 			departureAirportCallsign: "LAX",
 			arrivalAirportCallsign: "CMH",
-			departureAirportArrivalDateString: "April 8, 2022",
-			arrivalAirportArrivalDateString: "April 8, 2022"
+			departureDateString: "April 8, 2022",
+			arrivalDateString: "April 8, 2022"
 		)
 	}
 }

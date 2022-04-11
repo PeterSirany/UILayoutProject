@@ -16,16 +16,16 @@ struct FlightPlanItemCellView: View {
 			HStack {
 				HStack {
 					TitleSubtitleView(
-						titlePrefix: nil,
-						highlightedTitle: "1692",
+						titlePrefix: "FLT",
+						highlightedTitle: item.flightNumber,
 						subtitle: "OFP: 12"
 					)
 					Spacer()
 						.setWidth(78)
 					TitleSubtitleView(
 						titlePrefix: nil,
-						highlightedTitle: "MSP",
-						subtitle: "Departure"
+						highlightedTitle: item.departureAirportCallsign,
+						subtitle: item.departureDateString
 					)
 					
 					Rectangle()
@@ -35,8 +35,8 @@ struct FlightPlanItemCellView: View {
 					
 					TitleSubtitleView(
 						titlePrefix: nil,
-						highlightedTitle: "LAX",
-						subtitle: "Arrival"
+						highlightedTitle: item.arrivalAirportCallsign,
+						subtitle: item.arrivalDateString
 					)
 				}
 				Spacer()
@@ -45,8 +45,7 @@ struct FlightPlanItemCellView: View {
 			}
 			.padding(.vertical, 8)
 			.padding(.horizontal, 20)
-			.background(Color.darkBackgroundColor)
-			.addRoundedCornerStrokeBorder(color: .preliminaryTextColor)
+			.addRoundedCornerStrokeBorder(strokeColor: .preliminaryTextColor, backgroundColor: .darkBackgroundColor)
     }
 }
 
