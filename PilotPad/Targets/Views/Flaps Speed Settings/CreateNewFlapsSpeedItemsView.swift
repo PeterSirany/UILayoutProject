@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Models
 
 struct CreateNewFlapsSpeedItemsView: View {
 	@ObservedObject var model: CreateNewFlapsSpeedItemsModel = .init()

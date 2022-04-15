@@ -69,9 +69,10 @@ struct SectionContainer<Content: View, Accessory: View>: View  {
 				Spacer()
 				
 				titleAccessoryView()
-			}.padding(.horizontal, 23)
-				.background(Color.containerColor)
-				.shadow(color: Color.shadowColor, radius: 3, x: 1, y: 3)
+			}
+			.padding(.horizontal, 23)
+			.background(Color.containerColor)
+			.shadow(color: Color.shadowColor, radius: 3, x: 1, y: 3)
 			
 			Spacer(minLength: 12)
 			ZStack(alignment: .top) {
@@ -99,13 +100,18 @@ struct ContainerViews_Previews: PreviewProvider {
 		SectionContainer(
 			sectionTitle: "Container",
 			contentView: {
-				Text("Main Content")
+				HStack {
+					SimpleTextField(
+						title: "Hello",
+						placeholder: "Placeholder",
+						onCommitText: { _ in }
+					)
+				}
 			},
 			titleAccessoryView: {
 				Text("hello")
 			}
 		)
-			.frame(width: 300, height: 300)
 			.preferredColorScheme(.dark)
 	}
 }

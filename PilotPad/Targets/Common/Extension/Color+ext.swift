@@ -16,6 +16,7 @@ public extension Color {
 		static let calculatedTextColor = Color("CalculatedTextColor")
 		static let timeColor = Color("TimeTextColor")
 		static let warningAlertColor = Color("WarningTextColor")
+		static let highlightedTextColor = Color("HighlightedTextColor")
 		
 		static let logoColor = Color("TitleLogoColor")
 		static let blackBackgroundColor = Color("BlackBackgroundColor")
