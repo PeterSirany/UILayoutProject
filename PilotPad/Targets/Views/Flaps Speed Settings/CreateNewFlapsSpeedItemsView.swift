@@ -10,7 +10,7 @@ import SwiftUI
 import Models
 
 struct CreateNewFlapsSpeedItemsView: View {
-	@ObservedObject var model: CreateNewFlapsSpeedItemsModel = .init()
+	@ObservedObject var model: CreateNewFlapsSpeedItemsModel
 	
 	var body: some View {
 		SectionContainer(
@@ -27,11 +27,8 @@ struct CreateNewFlapsSpeedItemsView: View {
 	@ViewBuilder
 	func getContent() -> some View {
 		ScrollView(showsIndicators: false) {
-			ForEach(model.items) { item in
-				NewFlapsSpeedItemCellView(
-					onSubmitPosition: { self.model.submitPositionValue(position: $0, for: item.id) },
-					onSubmitSpeed: { self.model.submitSpeedValue(speed: $0, for: item.id) }
-				)
+			ForEach($model.items) { item in
+				NewFlapsSpeedItemCellView(flapsSpeedSetting: item)
 			}
 		}.padding(.vertical, 4)
 	}
@@ -51,7 +48,7 @@ struct CreateNewFlapsSpeedItemsView: View {
 
 struct CreateNewFlapsSpeedItemsView_Previews: PreviewProvider {
 	static var previews: some View {
-		CreateNewFlapsSpeedItemsView()
+		CreateNewFlapsSpeedItemsView(model: .init(items: []))
 			.frame(width: 250, height: 308)
 			.previewInterfaceOrientation(.landscapeLeft)
 			.preferredColorScheme(.dark)

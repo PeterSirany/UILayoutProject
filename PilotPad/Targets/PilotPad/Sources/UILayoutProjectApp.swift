@@ -14,11 +14,13 @@ struct UILayoutProjectApp: App {
 	@State var leftMenuNavigationViewModel: LeftMenuNavigationViewModel = LeftMenuNavigationViewModel()
 	@State var listViewModel: ChecklistViewModel = ChecklistViewModel()
 	
+	@State var aircraft: Aircraft = .init()
+	
 	let persistenceController = PersistenceController.shared
 	
 	var body: some Scene {
 		WindowGroup {
-			ContentView()
+			CreateNewAircraftGeneralView(aircraft: aircraft)
 				.environment(\.managedObjectContext, persistenceController.container.viewContext)
 				.environmentObject(listViewModel)
 				.environmentObject(leftMenuNavigationViewModel)

@@ -18,7 +18,7 @@ struct MainMenuContainerView: View {
 				SectionContainer(
 					sectionTitle: "New Aircraft General",
 					contentView: {
-						CreateNewAircraftGeneralView()
+						CreateNewAircraftGeneralView(aircraft: .init())
 							.padding()
 					},
 					titleAccessoryView: { AddButtonView {

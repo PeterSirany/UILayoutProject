@@ -10,6 +10,11 @@ import Foundation
 import SwiftUI
 
 public extension View {
+	@ViewBuilder func setHidden(_ isHidden: Bool) -> some View {
+		if !isHidden {
+			self
+		}
+	}
 	
 	func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
 		clipShape(RoundedCorner(radius: radius, corners: corners))

@@ -101,11 +101,7 @@ struct ContainerViews_Previews: PreviewProvider {
 			sectionTitle: "Container",
 			contentView: {
 				HStack {
-					SimpleTextField(
-						title: "Hello",
-						placeholder: "Placeholder",
-						onCommitText: { _ in }
-					)
+					EmptyView()
 				}
 			},
 			titleAccessoryView: {

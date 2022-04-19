@@ -41,26 +41,7 @@ struct AircraftSelectionView: View {
 	@ViewBuilder
 	func getContent() -> some View {
 		HStack {
-			SimpleTextField(
-				title: "Aircraft",
-				placeholder: "Tap To Search",
-				onCommitText: { _ in }
-			)
-			SimpleTextField(
-				title: "Passengers",
-				placeholder: "Kgs",
-				onCommitText: { _ in }
-			)
-			SimpleTextField(
-				title: "Luggage/Cargo",
-				placeholder: "Kgs",
-				onCommitText: { _ in }
-			)
-			SimpleTextField(
-				title: "ZFW",
-				placeholder: "Kgs",
-				onCommitText: { _ in }
-			)
+			EmptyView()
 		}
 	}
 }

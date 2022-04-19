@@ -9,29 +9,16 @@
 import Foundation
 import SwiftUI
 
-
 public class CreateNewFlapsSpeedItemsModel: ObservableObject {
 	
-	@Published public var items: [FlapsSpeedItem]
+	@Published public var items: [FlapsSpeedSetting]
 	
-	public init() {
-		self.items = [.init(position: nil, speed: nil)]
+	public init(items: [FlapsSpeedSetting]) {
+		self.items = []
 	}
 	
 	public func addItem() {
-		self.items.append(.init(position: nil, speed: nil))
-	}
-	
-	public func submitPositionValue(position: String, for id: UUID) {
-		if let item = items.first(where: { $0.id == id }) {
-			item.position = Int(position) ?? 0
-		}
-	}
-	
-	public func submitSpeedValue(speed: String, for id: UUID) {
-		if let item = items.first(where: { $0.id == id }) {
-			item.speed = Int(speed) ?? 0
-		}
+		self.items.append(.init())
 	}
 }
 
