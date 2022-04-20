@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftUI
+import Models
 
 public struct NewAircraftView: View {
 	@ObservedObject var aircraft: Aircraft
@@ -24,7 +25,7 @@ public struct NewAircraftView: View {
 			SimpleDecimalTextField(value: $aircraft.emptyWeight, title: "Empty Weight", placeholder: "Kgs")
 			SimpleDecimalTextField(value: $aircraft.taxiFuelFlow, title: "Taxi Fuel Flow", placeholder: "Kgs")
 			SimpleNumberTextField(value: $aircraft.climbSpeed, title: "CLB Speed", placeholder: "KTS")
-			SimpleNumberTextField(value: $aircraft.decentSpeed, title: "DES Speed", placeholder: "KTS")
+			SimpleNumberTextField(value: $aircraft.descentSpeed, title: "DES Speed", placeholder: "KTS")
 			SimpleNumberTextField(value: $aircraft.holdingSpeed, title: "Holding Speed", placeholder: "KTS")
 			SimpleNumberTextField(value: $aircraft.apchSpeed, title: "Apch Speed", placeholder: "KTS")
 			
@@ -40,7 +41,7 @@ public struct NewAircraftView: View {
 		print("•emptyWeight : \(aircraft.emptyWeight ?? 0)")
 		print("•taxFuelFlow : \(aircraft.taxiFuelFlow ?? 0)")
 		print("•climbSpeed  : \(aircraft.climbSpeed ?? 0)")
-		print("•decentSpeed : \(aircraft.decentSpeed ?? 0)")
+		print("•descentSpeed : \(aircraft.descentSpeed ?? 0)")
 		print("•holdSpeed   : \(aircraft.holdingSpeed ?? 0)")
 		print("•apchSpeed   : \(aircraft.apchSpeed ?? 0)")
 	}

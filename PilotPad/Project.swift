@@ -32,7 +32,7 @@ let viewModels = Target(
   product: .framework,
   bundleId: "com.petersirany.pilotpad.viewmodels",
   infoPlist: .default,
-  sources: .paths(["Targets/ViewModels/**"]),
+  sources: .paths(["Targets/ViewModels/Sources/**"]),
   dependencies: [.target(name: "Common"), .target(name: "Models")]
 )
 
@@ -55,7 +55,11 @@ let mainAppTarget = Target(
   resources: [
     "Targets/PilotPad/Resources/**"
   ],
-  dependencies: [.target(name: "Common"), .target(name: "ViewModels"), .target(name: "Models"), .target(name: "Views")]
+  dependencies: [.target(name: "Common"), .target(name: "ViewModels"), .target(name: "Models"), .target(name: "Views")],
+  coreDataModels: [
+    CoreDataModel("Targets/PilotPad/CoreData/Model.xcdatamodeld"),
+    CoreDataModel("Targets/PilotPad/CoreData/Main.xcdatamodeld")
+  ]
 )
 
 let project = Project(

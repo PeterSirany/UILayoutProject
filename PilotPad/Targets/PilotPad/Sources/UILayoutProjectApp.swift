@@ -8,6 +8,7 @@
 import SwiftUI
 import Views
 import ViewModels
+import Models
 
 @main
 struct UILayoutProjectApp: App {
@@ -20,7 +21,14 @@ struct UILayoutProjectApp: App {
 	
 	var body: some Scene {
 		WindowGroup {
-			CreateNewAircraftGeneralView(aircraft: aircraft)
+			CreateNewAircraftView(
+				viewModel:
+					CreateNewAircraftViewModel(
+						aircraft: aircraft,
+						dataStore: DataStoreImpl(managedObjectContext: persistenceController.container.viewContext)
+					)
+				)
+				.padding()
 				.environment(\.managedObjectContext, persistenceController.container.viewContext)
 				.environmentObject(listViewModel)
 				.environmentObject(leftMenuNavigationViewModel)

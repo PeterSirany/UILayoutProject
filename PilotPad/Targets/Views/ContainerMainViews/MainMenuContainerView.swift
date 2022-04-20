@@ -7,19 +7,20 @@
 
 import SwiftUI
 import Common
+import ViewModels
 
 struct MainMenuContainerView: View {
 	var body: some View {
 		VStack(alignment: .leading) {
-			
 			
 			HStack {
 				Spacer()
 				SectionContainer(
 					sectionTitle: "New Aircraft General",
 					contentView: {
-						CreateNewAircraftGeneralView(aircraft: .init())
-							.padding()
+//						CreateNewAircraftView(viewModel: CreateNewAircraftViewModel(aircraft: .init()))
+//							.padding()
+						EmptyView()
 					},
 					titleAccessoryView: { AddButtonView {
 						print("foo")
