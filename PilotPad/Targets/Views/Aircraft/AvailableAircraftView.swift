@@ -25,9 +25,13 @@ public struct AvailableAircraftView: View {
 					Section {
 						VStack {
 							ForEach(section.airplanes) { aircraft in
-								AircraftItemCellView(aircraft: aircraft)
-									.listRowInsets(EdgeInsets())
-									.listRowSeparator(.hidden)
+								Button(action: {
+									self.viewModel.aircraftSelected(aircraft)
+								}) {
+									AircraftItemCellView(aircraft: aircraft)
+										.listRowInsets(EdgeInsets())
+										.listRowSeparator(.hidden)
+								}.buttonStyle(PlainButtonStyle())
 							}
 						}
 					} header: {

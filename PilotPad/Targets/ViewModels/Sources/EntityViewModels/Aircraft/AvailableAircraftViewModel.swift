@@ -15,9 +15,11 @@ public class AvailableAircraftViewModel: ObservableObject {
 	@Published public var sections: [AircraftTypeSection] = []
 		
 	private let dataStore: DataStore
+	private let navigationContext: NavigationContextController
 	
-	public init(dataStore: DataStore) {
+	public init(dataStore: DataStore, navigationContext: NavigationContextController) {
 		self.dataStore = dataStore
+		self.navigationContext = navigationContext
 		self.fetchAirplanes()
 	}
 	
@@ -39,6 +41,6 @@ public class AvailableAircraftViewModel: ObservableObject {
 	}
 	
 	public func aircraftSelected(_ aircraft: Aircraft) {
-		
+		navigationContext.show(view: .newAircraft(aircraft: aircraft))
 	}
 }

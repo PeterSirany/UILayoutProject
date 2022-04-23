@@ -12,9 +12,8 @@ import Models
 
 let persistenceController = PersistenceController.shared
 let dataStore = DataStoreImpl(managedObjectContext: persistenceController.container.viewContext)
-let viewFactory = ViewFactory(dataStore: dataStore)
-let navigationContext = PilotPadNavigationContextController(viewFactory: viewFactory)
-
+let navigationContext = NavigationContextController()
+let viewFactory = ViewFactory(dataStore: dataStore, navigationContext: navigationContext)
 
 @main
 struct UILayoutProjectApp: App {
@@ -33,7 +32,7 @@ struct UILayoutProjectApp: App {
 //						dataStore: DataStoreImpl(managedObjectContext: persistenceController.container.viewContext)
 //					)
 //				)
-			MainMenuContainerView(navigationContext: navigationContext)
+			MainMenuContainerView(navigationContext: navigationContext, viewFactory: viewFactory)
 			
 //			AvailableAircraftView(viewModel: .init(dataStore: DataStoreImpl(managedObjectContext: persistenceController.container.viewContext)))
 				.padding()

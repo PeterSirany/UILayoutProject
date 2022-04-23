@@ -8,12 +8,15 @@
 import SwiftUI
 import Common
 import ViewModels
+import Models
 
 public struct MainMenuContainerView: View {
-	@ObservedObject var navigationContext: PilotPadNavigationContextController
+	@ObservedObject var navigationContext: NavigationContextController
+	private let viewFactory: ViewFactory
 	
-	public init(navigationContext: PilotPadNavigationContextController) {
+	public init(navigationContext: NavigationContextController, viewFactory: ViewFactory) {
 		self.navigationContext = navigationContext
+		self.viewFactory = viewFactory
 	}
 	
 	public var body: some View {
@@ -24,7 +27,7 @@ public struct MainMenuContainerView: View {
 	
 	@ViewBuilder
 	func getMainContent(view: Binding<ViewFactoryView>) -> some View {
-		navigationContext.get(view: view.wrappedValue)
+		viewFactory.build(view.wrappedValue)
 	}
 }
 

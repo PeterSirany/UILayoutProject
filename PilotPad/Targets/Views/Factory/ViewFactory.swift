@@ -8,23 +8,16 @@
 
 import Foundation
 import SwiftUI
-import ViewModels
 import Models
-
-public enum ViewFactoryView: Identifiable, Hashable {
-	case availableAircraftList
-	case newAircraft(aircraft: Aircraft)
-	
-	public var id: UUID {
-		return UUID()
-	}
-}
+import ViewModels
 
 public class ViewFactory {
 	private let dataStore: DataStore
+	private let navigationContext: NavigationContextController
 	
-	public init(dataStore: DataStore) {
+	public init(dataStore: DataStore, navigationContext: NavigationContextController) {
 		self.dataStore = dataStore
+		self.navigationContext = navigationContext
 	}
 	
 	@ViewBuilder
@@ -40,7 +33,7 @@ public class ViewFactory {
 	@ViewBuilder
 	func availableAircraftList() -> some View {
 		AvailableAircraftView(
-			viewModel: .init(dataStore: self.dataStore)
+			viewModel: .init(dataStore: self.dataStore, navigationContext: self.navigationContext)
 		)
 	}
 	
