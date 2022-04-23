@@ -35,14 +35,24 @@ public struct CreateNewAircraftView: View {
 				}.padding()
 			},
 			titleAccessoryView: {
-				Button(
-					action: {
-						viewModel.save()
-					},
-					label: {
-						Text("Save")
-					}
-				)
+				HStack {
+					Button(
+						action: {
+							viewModel.back()
+						},
+						label: {
+							Text("Back")
+						}
+					)
+					Button(
+						action: {
+							viewModel.save()
+						},
+						label: {
+							Text("Save")
+						}
+					)
+				}
 			}
 		)
 	}

@@ -40,7 +40,7 @@ public class ViewFactory {
 	@ViewBuilder
 	func newAircraft(_ aircraft: Aircraft) -> some View {
 		CreateNewAircraftView(
-			viewModel: .init(aircraft: aircraft, dataStore: self.dataStore)
+			viewModel: .init(aircraft: aircraft, dataStore: self.dataStore, navigationContext: navigationContext)
 		)
 	}
 }

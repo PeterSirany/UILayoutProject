@@ -25,9 +25,13 @@ public class DataStoreImpl: DataStore {
 			print("couldn't create the \(AircraftEntity.Keys.entityName) entity")
 			return
 		}
-		aircraftEntity.setValue(aircraft.model, forKey: AircraftEntity.Keys.model)
+		print(aircraft.description)
+		print("Reg: \(aircraft.registration)")
+		print("Reg: \(AircraftEntity.Keys.registration)")
 		aircraftEntity.setValue(aircraft.registration, forKey: AircraftEntity.Keys.registration)
-		aircraftEntity.setValue(aircraft.type, forKey: AircraftEntity.Keys.type)
+//		aircraftEntity.setValue(aircraft.model, forKey: AircraftEntity.Keys.model)
+//
+//		aircraftEntity.setValue(aircraft.type, forKey: AircraftEntity.Keys.type)
 		aircraftEntity.setValue(aircraft.emptyWeight, forKey: AircraftEntity.Keys.emptyWeight)
 		aircraftEntity.setValue(aircraft.rightWingTipTankCapacity, forKey: AircraftEntity.Keys.rightWingTipTankCapacity)
 		aircraftEntity.setValue(aircraft.restOperationsEnabled, forKey: AircraftEntity.Keys.restOperationsEnabled)
