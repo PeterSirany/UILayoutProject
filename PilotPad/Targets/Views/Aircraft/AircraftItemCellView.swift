@@ -7,17 +7,20 @@
 //
 
 import SwiftUI
+import Models
 
 struct AircraftItemCellView: View {
+	var aircraft: Aircraft
+	
     var body: some View {
 			HStack{
-				Text("Registration")
+				Text(aircraft.registration ?? "No Reg.")
 					.foregroundColor(Color.preliminaryTextColor)
-				Text("Model")
+				Text(aircraft.model ?? "No Model Found")
 					.foregroundColor(Color.preliminaryTextColor)
 					.padding(.leading, 20)
 				Spacer()
-				Text("8")
+				Text("NA")
 					.foregroundColor(Color.preliminaryTextColor)
 					.padding(.trailing, 25)
 				Text("Go")
@@ -33,6 +36,6 @@ struct AircraftItemCellView: View {
 
 struct AircraftItemCellView_Previews: PreviewProvider {
     static var previews: some View {
-        AircraftItemCellView()
+			AircraftItemCellView(aircraft: .init())
     }
 }

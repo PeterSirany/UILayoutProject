@@ -19,7 +19,6 @@ public class CreateNewAircraftViewModel: ObservableObject {
 		self.aircraft = aircraft
 		self.dataStore = dataStore
 		self.flapsModel = .init(items: aircraft.flaps)
-		self.fetch()
 	}
 	
 	public func save() {
@@ -28,14 +27,6 @@ public class CreateNewAircraftViewModel: ObservableObject {
 			print("Save successful")
 		} catch {
 			print("Error saving aircraft: \(error)")
-		}
-	}
-	
-	public func fetch() {
-		do {
-			try self.dataStore.fetchAirplane()
-		} catch {
-			print("Something went wrong fetching airplanes: \(error.localizedDescription)")
 		}
 	}
 }

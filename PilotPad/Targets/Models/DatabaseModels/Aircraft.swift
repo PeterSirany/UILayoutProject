@@ -9,7 +9,8 @@
 import Foundation
 import SwiftUI
 
-public class Aircraft: ObservableObject, CustomStringConvertible {
+public class Aircraft: ObservableObject, Identifiable, Hashable, CustomStringConvertible {
+	public var id = UUID()
 	@Published public var type: String?
 	@Published public var registration: String?
 	@Published public var model: String?
@@ -86,5 +87,17 @@ autobreakSystem = \(self.autobreakSystem)
  radarBeamWidth = \(self.radarBeamWidth ?? 0)
 ------ End ------
 """
+	}
+}
+
+extension Aircraft {
+	public static func == (lhs: Aircraft, rhs: Aircraft) -> Bool {
+		return true
+	}
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(id)
+		hasher.combine(type)
+		hasher.combine(registration)
+		hasher.combine(model)
 	}
 }

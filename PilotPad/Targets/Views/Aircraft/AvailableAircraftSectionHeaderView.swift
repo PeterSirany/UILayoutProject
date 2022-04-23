@@ -10,9 +10,10 @@ import SwiftUI
 import Common
 
 struct AvailableAircraftSectionHeaderView: View {
+	var aircraftType: String
     var body: some View {
 			HStack {
-				Text("Type: B737")
+				Text("Type: \(aircraftType)")
 					.foregroundColor(.white)
 					.padding(.leading, 25)
 				Spacer()
@@ -25,6 +26,6 @@ struct AvailableAircraftSectionHeaderView: View {
 
 struct AvailableAircraftSectionHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        AvailableAircraftSectionHeaderView()
+        AvailableAircraftSectionHeaderView(aircraftType: "B-737")
     }
 }

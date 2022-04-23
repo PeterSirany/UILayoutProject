@@ -7,42 +7,41 @@
 //
 
 import SwiftUI
+import Models
+import ViewModels
 
-struct AvailableAircraftView: View {
-    var body: some View {
-			SectionContainer(
-				sectionTitle: "Aircraft",
-				contentView: {
-					List {
-						Section {
-							VStack {
-								AircraftItemCellView()
+public struct AvailableAircraftView: View {
+	@ObservedObject var viewModel: AvailableAircraftViewModel
+	
+	public init(viewModel: AvailableAircraftViewModel) {
+		self.viewModel = viewModel
+	}
+	
+	public var body: some View {
+		SectionContainer(
+			sectionTitle: "Aircraft",
+			contentView: {
+				List(viewModel.sections) { section in
+					Section {
+						VStack {
+							ForEach(section.airplanes) { aircraft in
+								AircraftItemCellView(aircraft: aircraft)
 									.listRowInsets(EdgeInsets())
 									.listRowSeparator(.hidden)
-								AircraftItemCellView()
-									.listRowInsets(EdgeInsets())
-									.listRowSeparator(.hidden)
-								AircraftItemCellView()
-									.listRowInsets(EdgeInsets())
-									.listRowSeparator(.hidden)
-								AircraftItemCellView()
-									.listRowInsets(EdgeInsets())
-									.listRowSeparator(.hidden)
-//									.padding([.leading, .trailing, .bottom])
-									.background(Color.clear)
 							}
-						} header: {
-							AvailableAircraftSectionHeaderView()
 						}
-					}.listStyle(PlainListStyle())
-				},
-				titleAccessoryView: { EmptyView() })
-    }
+					} header: {
+						AvailableAircraftSectionHeaderView(aircraftType: section.aircraftType ?? "NA")
+					}
+				}.listStyle(PlainListStyle())
+			},
+			titleAccessoryView: { EmptyView() })
+	}
 }
 
-struct AvailableAircraftView_Previews: PreviewProvider {
-    static var previews: some View {
-			AvailableAircraftView()
-				.preferredColorScheme(.dark)
-    }
-}
+//struct AvailableAircraftView_Previews: PreviewProvider {
+//    static var previews: some View {
+//			AvailableAircraftView(viewModel: .init(dataStore: DataStore.preview))
+//				.preferredColorScheme(.dark)
+//    }
+//}

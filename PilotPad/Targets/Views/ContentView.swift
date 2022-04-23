@@ -45,9 +45,9 @@ public struct ContentView : View {
 							ScrollView {
 								FlightPlansView(model: .init())
 									.frame(height: 250)
-								MainMenuContainerView()
-									.padding(.horizontal, 12)
-									.padding(.bottom, 12)
+//								MainMenuContainerView()
+//									.padding(.horizontal, 12)
+//									.padding(.bottom, 12)
 							}.padding(.horizontal, 12)
 								.padding(.bottom, 12)
 							

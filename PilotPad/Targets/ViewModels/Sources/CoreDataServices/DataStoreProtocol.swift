@@ -9,7 +9,7 @@
 import Foundation
 import Models
 
-public protocol DataStore {
+public protocol DataStore: AnyObject {
 	func save(aircraft: Aircraft) throws
-	func fetchAirplane() throws
+	func fetchAirplane() throws -> [Aircraft]
 }

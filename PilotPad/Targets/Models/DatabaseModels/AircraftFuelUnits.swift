@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-public enum AircraftFuelUnits: Int, Identifiable {
+public enum AircraftFuelUnits: Int, Identifiable, Hashable {
 	case lbs = 0
 	case kbs
 	case gal

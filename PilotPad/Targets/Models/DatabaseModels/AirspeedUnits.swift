@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-public enum AirspeedUnits: Int, Identifiable {
+public enum AirspeedUnits: Int, Identifiable, Hashable {
 	case kts = 0
 	case kph
 	case mph

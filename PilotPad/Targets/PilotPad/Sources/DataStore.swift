@@ -55,19 +55,13 @@ public class DataStoreImpl: DataStore {
 		}
 	}
 	
-	public func fetchAirplane() throws {
+	public func fetchAirplane() throws -> [Aircraft] {
 		let context = self.managedObjectContext
 		do {
 			let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AircraftEntity")
 			let fetchRequestResults = try context.fetch(request).compactMap { $0 as? AircraftEntity }
-			print("Result: \(fetchRequestResults.count)")
 			let airplanes = fetchRequestResults.map { $0.toAircraftModel() }
-			print("Fetched Airplanes:")
-			print("    Quantity: \(airplanes.count)")
-			print("--- Raw Data ---")
-			airplanes.forEach({ print("\($0.self)\n") })
-		} catch {
-			print("Fetch error: \(error.localizedDescription)")
+			return airplanes
 		}
 	}
 }
@@ -82,3 +76,4 @@ public protocol QueryFilter: Equatable {
 		associatedtype ResultType: NSFetchRequestResult
 		func fetchRequest(_ dataStore: DataStore) -> NSFetchRequest<ResultType>
 }
+
