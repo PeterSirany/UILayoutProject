@@ -12,6 +12,7 @@ import SwiftUI
 public enum ViewFactoryView: Identifiable, Hashable {
 	case availableAircraftList
 	case newAircraft(aircraft: Aircraft)
+	case existingAircraft(aircraft: Aircraft)
 	
 	public var id: UUID {
 		return UUID()

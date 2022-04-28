@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 public class Aircraft: ObservableObject, Identifiable, Hashable, CustomStringConvertible {
-	public var id = UUID()
+	public var id: String?
 	@Published public var type: String?
 	@Published public var registration: String?
 	@Published public var model: String?
@@ -47,6 +47,7 @@ public class Aircraft: ObservableObject, Identifiable, Hashable, CustomStringCon
 	
 	public init() {
 		print("Aircraft initialized")
+		self.id = UUID().uuidString
 	}
 	
 	public var description: String {

@@ -15,9 +15,11 @@ public class CreateNewAircraftViewModel: ObservableObject {
 	@ObservedObject public var flapsModel: CreateNewFlapsSpeedItemsModel
 	private let dataStore: DataStore
 	private let navigationContext: NavigationContextController
+	private let newAircraft: Bool
 	
-	public init(aircraft: Aircraft, dataStore: DataStore, navigationContext: NavigationContextController) {
+	public init(aircraft: Aircraft, newAircraft: Bool, dataStore: DataStore, navigationContext: NavigationContextController) {
 		self.aircraft = aircraft
+		self.newAircraft = newAircraft
 		self.dataStore = dataStore
 		self.navigationContext = navigationContext
 		self.flapsModel = .init(items: aircraft.flaps)
@@ -25,7 +27,12 @@ public class CreateNewAircraftViewModel: ObservableObject {
 	
 	public func save() {
 		do {
-			try self.dataStore.save(aircraft: aircraft)
+			if newAircraft {
+				try self.dataStore.save(aircraft: aircraft)
+			} else {
+				try self.dataStore.update(aircraft: aircraft)
+			}
+			
 			self.navigationContext.show(view: .availableAircraftList)
 			print("Save successful")
 		} catch {

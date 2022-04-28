@@ -26,7 +26,9 @@ public class ViewFactory {
 		case .availableAircraftList:
 			self.availableAircraftList()
 		case .newAircraft(let aircraft):
-			self.newAircraft(aircraft)
+			self.aircraft(aircraft, newAircraft: true)
+		case .existingAircraft(let aircraft):
+			self.aircraft(aircraft, newAircraft: false)
 		}
 	}
 	
@@ -38,9 +40,9 @@ public class ViewFactory {
 	}
 	
 	@ViewBuilder
-	func newAircraft(_ aircraft: Aircraft) -> some View {
+	func aircraft(_ aircraft: Aircraft, newAircraft: Bool) -> some View {
 		CreateNewAircraftView(
-			viewModel: .init(aircraft: aircraft, dataStore: self.dataStore, navigationContext: navigationContext)
+			viewModel: .init(aircraft: aircraft, newAircraft: newAircraft, dataStore: self.dataStore, navigationContext: navigationContext)
 		)
 	}
 }

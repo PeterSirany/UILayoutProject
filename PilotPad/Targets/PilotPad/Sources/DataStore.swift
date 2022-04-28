@@ -25,13 +25,28 @@ public class DataStoreImpl: DataStore {
 			print("couldn't create the \(AircraftEntity.Keys.entityName) entity")
 			return
 		}
-		print(aircraft.description)
-		print("Reg: \(aircraft.registration)")
-		print("Reg: \(AircraftEntity.Keys.registration)")
+		do {
+			try self.save(aircraftEntity: aircraftEntity, aircraft: aircraft)
+		}
+	}
+	
+	public func update(aircraft: Aircraft) throws {
+		guard let id = aircraft.id else { return }
+		let context = self.managedObjectContext
+		do {
+			let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AircraftEntity")
+			request.predicate = NSPredicate(format: "id == %@", id as NSString)
+			if let aircraftEntity = try context.fetch(request).compactMap({ $0 as? AircraftEntity }).first {
+				try self.save(aircraftEntity: aircraftEntity, aircraft: aircraft)
+			}
+		}
+	}
+	
+	private func save(aircraftEntity: AircraftEntity, aircraft: Aircraft) throws {
+		aircraftEntity.setValue(aircraft.id, forKey: AircraftEntity.Keys.id)
 		aircraftEntity.setValue(aircraft.registration, forKey: AircraftEntity.Keys.registration)
-//		aircraftEntity.setValue(aircraft.model, forKey: AircraftEntity.Keys.model)
-//
-//		aircraftEntity.setValue(aircraft.type, forKey: AircraftEntity.Keys.type)
+		aircraftEntity.setValue(aircraft.model, forKey: AircraftEntity.Keys.model)
+		aircraftEntity.setValue(aircraft.type, forKey: AircraftEntity.Keys.type)
 		aircraftEntity.setValue(aircraft.emptyWeight, forKey: AircraftEntity.Keys.emptyWeight)
 		aircraftEntity.setValue(aircraft.rightWingTipTankCapacity, forKey: AircraftEntity.Keys.rightWingTipTankCapacity)
 		aircraftEntity.setValue(aircraft.restOperationsEnabled, forKey: AircraftEntity.Keys.restOperationsEnabled)
@@ -55,7 +70,7 @@ public class DataStoreImpl: DataStore {
 		aircraftEntity.setValue(aircraft.fuelJettisonSystem, forKey: AircraftEntity.Keys.fuelJettisonSystem)
 		aircraftEntity.setValue(aircraft.centerAndWingTipTanks, forKey: AircraftEntity.Keys.centerAndWingTipTanks)
 		do {
-			try managedContext.save()
+			try self.managedObjectContext.save()
 		}
 	}
 	

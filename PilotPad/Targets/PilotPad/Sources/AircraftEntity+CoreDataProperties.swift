@@ -17,6 +17,7 @@ extension AircraftEntity {
 		return NSFetchRequest<AircraftEntity>(entityName: "AircraftEntity")
 	}
 	
+	@NSManaged public var id: String?
 	@NSManaged public var autobreakSystem: Bool
 	@NSManaged public var centerAndWingTipTanks: Bool
 	@NSManaged public var centerWingTipTankCapacity: Double
@@ -46,6 +47,7 @@ extension AircraftEntity {
 	
 	public struct Keys {
 		private init() {}
+		public static let id = "id"
 		public static let entityName = "AircraftEntity"
 		public static let model = "model"
 		public static let registration = "registration"

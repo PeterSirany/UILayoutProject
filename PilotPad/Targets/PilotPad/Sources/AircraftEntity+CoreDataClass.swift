@@ -16,9 +16,10 @@ public class AircraftEntity: NSManagedObject {
 
 	public func toAircraftModel() -> Aircraft {
 		let aircraft = Aircraft()
+		aircraft.id = self.id
 		aircraft.type = self.type
-		aircraft.registration = self.type
-		aircraft.model = self.type
+		aircraft.registration = self.registration
+		aircraft.model = self.model
 		aircraft.emptyWeight = self.emptyWeight
 		aircraft.taxiFuelFlow = self.taxiFuelFlow
 		aircraft.climbSpeed = Int(self.climbSpeed)

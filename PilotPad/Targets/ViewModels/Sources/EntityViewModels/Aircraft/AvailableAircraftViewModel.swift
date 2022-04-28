@@ -40,7 +40,11 @@ public class AvailableAircraftViewModel: ObservableObject {
 		}
 	}
 	
+	public func createNewAircraft() {
+		navigationContext.show(view: .newAircraft(aircraft: .init()))
+	}
+	
 	public func aircraftSelected(_ aircraft: Aircraft) {
-		navigationContext.show(view: .newAircraft(aircraft: aircraft))
+		navigationContext.show(view: .existingAircraft(aircraft: aircraft))
 	}
 }

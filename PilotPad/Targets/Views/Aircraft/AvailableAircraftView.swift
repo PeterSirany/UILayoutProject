@@ -39,7 +39,13 @@ public struct AvailableAircraftView: View {
 					}
 				}.listStyle(PlainListStyle())
 			},
-			titleAccessoryView: { EmptyView() })
+			titleAccessoryView: {
+				Button(action: {
+					self.viewModel.createNewAircraft()
+				}, label: {
+					Text("Create New")
+				})
+			})
 	}
 }
 
