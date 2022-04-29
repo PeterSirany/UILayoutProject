@@ -44,6 +44,15 @@ extension AircraftEntity {
 	@NSManaged public var type: String?
 	@NSManaged public var weatherRadarSystem: Bool
 	
+	@NSManaged public var maxZeroFuelWeight: Double
+	@NSManaged public var maxTaxi: Double
+	@NSManaged public var maxTakeOffWeight: Double
+	@NSManaged public var maxLandingWeight: Double
+	@NSManaged public var maxFuelQuantity: Double
+	@NSManaged public var maxPressureAltitude: Double
+	@NSManaged public var maxFuelDiscrepancy1: Double
+	@NSManaged public var maxFuelDiscrepancy2: Double
+	
 	
 	public struct Keys {
 		private init() {}
@@ -74,6 +83,14 @@ extension AircraftEntity {
 		public static let singlePointRefueling = "singlePointRefueling"
 		public static let fuelJettisonSystem = "fuelJettisonSystem"
 		public static let centerAndWingTipTanks = "centerAndWingTipTanks"
+		public static let maxZeroFuelWeight = "maxZeroFuelWeight"
+		public static let maxTaxi = "maxTaxi"
+		public static let maxTakeOffWeight = "maxTakeOffWeight"
+		public static let maxLandingWeight = "maxLandingWeight"
+		public static let maxFuelQuantity = "maxFuelQuantity"
+		public static let maxPressureAltitude = "maxPressureAltitude"
+		public static let maxFuelDiscrepancy1 = "maxFuelDiscrepancy1"
+		public static let maxFuelDiscrepancy2 = "maxFuelDiscrepancy2"
 	}
 	
 	public static func fromAircraft(_ aircraft: Aircraft, context: NSManagedObjectContext) -> NSManagedObject {
@@ -105,6 +122,16 @@ extension AircraftEntity {
 		aircraftEntity.setValue(aircraft.singlePointRefueling, forKey: AircraftEntity.Keys.singlePointRefueling)
 		aircraftEntity.setValue(aircraft.fuelJettisonSystem, forKey: AircraftEntity.Keys.fuelJettisonSystem)
 		aircraftEntity.setValue(aircraft.centerAndWingTipTanks, forKey: AircraftEntity.Keys.centerAndWingTipTanks)
+		
+		aircraftEntity.setValue(aircraft.maxZeroFuelWeight, forKey: AircraftEntity.Keys.maxZeroFuelWeight)
+		aircraftEntity.setValue(aircraft.maxTaxi, forKey: AircraftEntity.Keys.maxTaxi)
+		aircraftEntity.setValue(aircraft.maxTakeOffWeight, forKey: AircraftEntity.Keys.maxTakeOffWeight)
+		aircraftEntity.setValue(aircraft.maxLandingWeight, forKey: AircraftEntity.Keys.maxLandingWeight)
+		aircraftEntity.setValue(aircraft.maxFuelQuantity, forKey: AircraftEntity.Keys.maxFuelQuantity)
+		aircraftEntity.setValue(aircraft.maxPressureAltitude, forKey: AircraftEntity.Keys.maxPressureAltitude)
+		aircraftEntity.setValue(aircraft.maxFuelDiscrepancy1, forKey: AircraftEntity.Keys.maxFuelDiscrepancy1)
+		aircraftEntity.setValue(aircraft.maxFuelDiscrepancy2, forKey: AircraftEntity.Keys.maxFuelDiscrepancy2)
+		
 		return aircraftEntity
 	}
 }

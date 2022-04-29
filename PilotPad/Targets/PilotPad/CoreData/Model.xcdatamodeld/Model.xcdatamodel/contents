@@ -16,6 +16,14 @@
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="leftTankCapacity" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="leftWingTipTankCapacity" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="maxFuelDiscrepancy1" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="maxFuelDiscrepancy2" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="maxFuelQuantity" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="maxLandingWeight" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="maxPressureAltitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="maxTakeOffWeight" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="maxTaxi" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="maxZeroFuelWeight" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="model" optional="YES" attributeType="String"/>
         <attribute name="radarBeamWidth" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="registration" optional="YES" attributeType="String"/>
@@ -29,6 +37,6 @@
         <attribute name="weatherRadarSystem" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="AircraftEntity" positionX="-63" positionY="-18" width="128" height="419"/>
+        <element name="Okay" positionX="-63" positionY="-18" width="128" height="539"/>
     </elements>
 </model>

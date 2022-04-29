@@ -34,7 +34,6 @@ public class CreateNewAircraftViewModel: ObservableObject {
 			}
 			
 			self.navigationContext.show(view: .availableAircraftList)
-			print("Save successful")
 		} catch {
 			print("Error saving aircraft: \(error)")
 		}

@@ -45,6 +45,15 @@ public class Aircraft: ObservableObject, Identifiable, Hashable, CustomStringCon
 	@Published public var rightWingTipTankCapacity: Double?
 	@Published public var radarBeamWidth: Double?
 	
+	@Published public var maxZeroFuelWeight: Double?
+	@Published public var maxTaxi: Double?
+	@Published public var maxTakeOffWeight: Double?
+	@Published public var maxLandingWeight: Double?
+	@Published public var maxFuelQuantity: Double?
+	@Published public var maxPressureAltitude: Double?
+	@Published public var maxFuelDiscrepancy1: Double?
+	@Published public var maxFuelDiscrepancy2: Double?
+	
 	public init() {
 		print("Aircraft initialized")
 		self.id = UUID().uuidString

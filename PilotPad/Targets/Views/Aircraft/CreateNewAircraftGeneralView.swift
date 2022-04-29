@@ -23,6 +23,14 @@ public struct CreateNewAircraftView: View {
 	@ObservedObject public var viewModel: CreateNewAircraftViewModel
 	
 	public var body: some View {
+		ScrollView {
+			getUpperContainer()
+			getLowerContainer()
+		}
+	}
+	
+	@ViewBuilder
+	func getUpperContainer() -> some View {
 		SectionContainer(
 			sectionTitle: "New Aircraft General",
 			contentView: {
@@ -55,6 +63,11 @@ public struct CreateNewAircraftView: View {
 				}
 			}
 		)
+	}
+	
+	@ViewBuilder
+	func getLowerContainer() -> some View {
+		AircraftLimitationsInputView(viewModel: viewModel)
 	}
 	
 	@ViewBuilder
@@ -188,6 +201,34 @@ public struct CreateNewAircraftView: View {
 			Spacer()
 			SimpleDecimalTextField(value: $viewModel.aircraft.rightWingTipTankCapacity, title: "Right", placeholder: "123")
 		}.setHidden(viewModel.aircraft.centerAndWingTipTanks == false)
+	}
+}
+
+struct AircraftLimitationsInputView: View {
+	@ObservedObject public var viewModel: CreateNewAircraftViewModel
+	
+	var body: some View {
+		SectionContainer(
+			sectionTitle: "Aircraft Limitations",
+			contentView: {
+				VStack {
+					HStack {
+						SimpleDecimalTextField(value: $viewModel.aircraft.maxZeroFuelWeight, title: "Max ZFW", placeholder: "115,000")
+						SimpleDecimalTextField(value: $viewModel.aircraft.maxTaxi, title: "Max Taxi", placeholder: "140,000")
+						SimpleDecimalTextField(value: $viewModel.aircraft.maxTakeOffWeight, title: "Max T/O Weight", placeholder: "140,000")
+						SimpleDecimalTextField(value: $viewModel.aircraft.maxLandingWeight, title: "Max Ldg Weight", placeholder: "120,000")
+						SimpleDecimalTextField(value: $viewModel.aircraft.maxFuelQuantity, title: "Max Fuel Qty", placeholder: "123,000")
+					}
+					HStack {
+						SimpleDecimalTextField(value: $viewModel.aircraft.maxPressureAltitude, title: "Max Pressure Altitude", placeholder: "45,000")
+						SimpleDecimalTextField(value: $viewModel.aircraft.maxFuelDiscrepancy1, title: "Max Fuel Discrepancy %", placeholder: "1,254")
+						SimpleDecimalTextField(value: $viewModel.aircraft.maxFuelDiscrepancy2, title: "Max Fuel Discrepancy", placeholder: "1,254")
+					}
+				}
+				.padding()
+			},
+			titleAccessoryView: { EmptyView() }
+		)
 	}
 }
 

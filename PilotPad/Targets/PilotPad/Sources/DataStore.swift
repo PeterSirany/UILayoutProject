@@ -69,6 +69,15 @@ public class DataStoreImpl: DataStore {
 		aircraftEntity.setValue(aircraft.singlePointRefueling, forKey: AircraftEntity.Keys.singlePointRefueling)
 		aircraftEntity.setValue(aircraft.fuelJettisonSystem, forKey: AircraftEntity.Keys.fuelJettisonSystem)
 		aircraftEntity.setValue(aircraft.centerAndWingTipTanks, forKey: AircraftEntity.Keys.centerAndWingTipTanks)
+		
+		aircraftEntity.setValue(aircraft.maxZeroFuelWeight, forKey: AircraftEntity.Keys.maxZeroFuelWeight)
+		aircraftEntity.setValue(aircraft.maxTaxi, forKey: AircraftEntity.Keys.maxTaxi)
+		aircraftEntity.setValue(aircraft.maxTakeOffWeight, forKey: AircraftEntity.Keys.maxTakeOffWeight)
+		aircraftEntity.setValue(aircraft.maxLandingWeight, forKey: AircraftEntity.Keys.maxLandingWeight)
+		aircraftEntity.setValue(aircraft.maxFuelQuantity, forKey: AircraftEntity.Keys.maxFuelQuantity)
+		aircraftEntity.setValue(aircraft.maxPressureAltitude, forKey: AircraftEntity.Keys.maxPressureAltitude)
+		aircraftEntity.setValue(aircraft.maxFuelDiscrepancy1, forKey: AircraftEntity.Keys.maxFuelDiscrepancy1)
+		aircraftEntity.setValue(aircraft.maxFuelDiscrepancy2, forKey: AircraftEntity.Keys.maxFuelDiscrepancy2)
 		do {
 			try self.managedObjectContext.save()
 		}
@@ -78,9 +87,9 @@ public class DataStoreImpl: DataStore {
 		let context = self.managedObjectContext
 		do {
 			let request = NSFetchRequest<NSFetchRequestResult>(entityName: "AircraftEntity")
-			let fetchRequestResults = try context.fetch(request).compactMap { $0 as? AircraftEntity }
-			let airplanes = fetchRequestResults.map { $0.toAircraftModel() }
-			return airplanes
+			let fetchRequestResults = try? context.fetch(request).compactMap { $0 as? AircraftEntity }
+			let airplanes = fetchRequestResults?.compactMap { $0.toAircraftModel() }
+			return airplanes ?? []
 		}
 	}
 }

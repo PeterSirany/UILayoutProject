@@ -52,6 +52,15 @@ public class AircraftEntity: NSManagedObject {
 		aircraft.airspeedUnits = .kts
 		aircraft.fuelUnits = .lbs
 		
+		aircraft.maxZeroFuelWeight = self.maxZeroFuelWeight
+		aircraft.maxTaxi = self.maxTaxi
+		aircraft.maxTakeOffWeight = self.maxTakeOffWeight
+		aircraft.maxLandingWeight = self.maxLandingWeight
+		aircraft.maxFuelQuantity = self.maxFuelQuantity
+		aircraft.maxPressureAltitude = self.maxPressureAltitude
+		aircraft.maxFuelDiscrepancy1 = self.maxFuelDiscrepancy1
+		aircraft.maxFuelDiscrepancy2 = self.maxFuelDiscrepancy2
+		
 		return aircraft
 	}
 }
