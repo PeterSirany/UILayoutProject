@@ -7,31 +7,54 @@
 //
 
 import SwiftUI
+import ViewModels
 
 struct AvailableDatabasesView: View {
+	@ObservedObject var viewModel: AvailableDatabasesViewModel
+	
+	public init(viewModel: AvailableDatabasesViewModel) {
+		self.viewModel = viewModel
+	}
+	
     var body: some View {
         SectionContainer(
 					sectionTitle: "DATABASES",
 					contentView: {
 						VStack {
 							HStack {
-								DatabaseItemView(title: "Airports")
-								DatabaseItemView(title: "Aircraft")
-								DatabaseItemView(title: "Waypoints")
-							}
+								Spacer()
+								self.buildButton(ofType: .airports)
+								Spacer()
+								self.buildButton(ofType: .aircraft)
+								Spacer()
+								self.buildButton(ofType: .waypoints)
+								Spacer()
+							}.padding(.horizontal)
 							HStack {
-								DatabaseItemView(title: "Passengers")
-								DatabaseItemView(title: "Notes")
-							}
+								Spacer()
+								self.buildButton(ofType: .passengers)
+								Spacer()
+								self.buildButton(ofType: .notes)
+								Spacer()
+							}.padding(.horizontal)
 						}
 					},
 					titleAccessoryView: { EmptyView() })
     }
+	
+	@ViewBuilder
+	func buildButton(ofType type: AvailableDatabasesViewModel.DatabaseType) -> some View {
+		Button(action: {
+			self.viewModel.databaseSelected(type)
+		}) {
+			DatabaseItemView(title: type.rawValue.capitalized)
+		}
+	}
 }
 
 struct AvailableDatabasesView_Previews: PreviewProvider {
     static var previews: some View {
-			AvailableDatabasesView()
+			AvailableDatabasesView(viewModel: .init(navigationContext: .init()))
 				.preferredColorScheme(.dark)
     }
 }

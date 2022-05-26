@@ -40,11 +40,19 @@ public struct AvailableAircraftView: View {
 				}.listStyle(PlainListStyle())
 			},
 			titleAccessoryView: {
-				Button(action: {
-					self.viewModel.createNewAircraft()
-				}, label: {
-					Text("Create New")
-				})
+				HStack {
+					Button(action: {
+						self.viewModel.back()
+					}, label: {
+						Text("Back")
+					})
+					Button(action: {
+						self.viewModel.createNewAircraft()
+					}, label: {
+						Text("Create New")
+					})
+				}
+				
 			})
 	}
 }

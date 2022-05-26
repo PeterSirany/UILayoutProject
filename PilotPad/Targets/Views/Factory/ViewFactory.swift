@@ -25,10 +25,14 @@ public class ViewFactory {
 		switch view {
 		case .availableAircraftList:
 			self.availableAircraftList()
+		case .availableAirportsList:
+			self.availableAirportsList()
 		case .newAircraft(let aircraft):
 			self.aircraft(aircraft, newAircraft: true)
 		case .existingAircraft(let aircraft):
 			self.aircraft(aircraft, newAircraft: false)
+		case .mainMenu:
+			self.mainMenu()
 		}
 	}
 	
@@ -38,11 +42,20 @@ public class ViewFactory {
 			viewModel: .init(dataStore: self.dataStore, navigationContext: self.navigationContext)
 		)
 	}
+	@ViewBuilder
+	func availableAirportsList() -> some View {
+		AvailableAirportsView(viewModel: .init(navigationContext: self.navigationContext))
+	}
 	
 	@ViewBuilder
 	func aircraft(_ aircraft: Aircraft, newAircraft: Bool) -> some View {
 		CreateNewAircraftView(
 			viewModel: .init(aircraft: aircraft, newAircraft: newAircraft, dataStore: self.dataStore, navigationContext: navigationContext)
 		)
+	}
+	
+	@ViewBuilder
+	func mainMenu() -> some View {
+		MainMenuView(navigationContext: navigationContext)
 	}
 }

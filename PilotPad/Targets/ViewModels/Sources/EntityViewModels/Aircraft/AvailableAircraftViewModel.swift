@@ -40,6 +40,10 @@ public class AvailableAircraftViewModel: ObservableObject {
 		}
 	}
 	
+	public func back() {
+		navigationContext.back()
+	}
+	
 	public func createNewAircraft() {
 		navigationContext.show(view: .newAircraft(aircraft: .init()))
 	}

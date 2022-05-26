@@ -7,18 +7,27 @@
 //
 
 import SwiftUI
+import Common
+import ViewModels
+import Models
 
-struct MainMenuView: View {
-    var body: some View {
+public struct MainMenuView: View {
+	private let navigationContext: NavigationContextController
+	
+	public init(navigationContext: NavigationContextController) {
+		self.navigationContext = navigationContext
+	}
+    
+	public var body: some View {
 			VStack {
 				FlightPlansView(model: .init())
-				
+				AvailableDatabasesView(viewModel: .init(navigationContext: self.navigationContext))
 			}
     }
 }
 
 struct MainMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        MainMenuView()
+			MainMenuView(navigationContext: .init())
     }
 }
