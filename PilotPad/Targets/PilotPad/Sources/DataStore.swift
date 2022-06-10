@@ -19,6 +19,17 @@ public class DataStoreImpl: DataStore {
 		self.managedObjectContext = managedObjectContext
 	}
 	
+	public func save(airport: Airport) throws {
+		let managedContext = self.managedObjectContext
+		guard let airportEntity = NSEntityDescription.insertNewObject(forEntityName: "AirportEntity", into: managedContext) as? AirportEntity else {
+			print("couldn't create the \(AirportEntity.Keys.name) entity")
+			return
+		}
+		do {
+			try self.save(airportEntity: airportEntity, airport: airport)
+		}
+	}
+	
 	public func save(aircraft: Aircraft) throws {
 		let managedContext = self.managedObjectContext
 		guard let aircraftEntity = NSEntityDescription.insertNewObject(forEntityName: "AircraftEntity", into: managedContext) as? AircraftEntity else {
@@ -83,6 +94,62 @@ public class DataStoreImpl: DataStore {
 		}
 	}
 	
+	private func save(airportEntity: AirportEntity, airport: Airport) throws {
+		airportEntity.setValue(airport.elevation, forKey: AirportEntity.Keys.elevation)
+		airportEntity.setValue(airport.latitude, forKey: AirportEntity.Keys.latitude)
+		airportEntity.setValue(airport.longitude, forKey: AirportEntity.Keys.longitude)
+		airportEntity.setValue(airport.iata, forKey: AirportEntity.Keys.iata)
+		airportEntity.setValue(airport.icao, forKey: AirportEntity.Keys.icao)
+		airportEntity.setValue(airport.name, forKey: AirportEntity.Keys.name)
+		airportEntity.setValue(airport.reference, forKey: AirportEntity.Keys.reference)
+		airportEntity.setValue(airport.variation, forKey: AirportEntity.Keys.variation)
+		airportEntity.setValue(airport.utcOffset, forKey: AirportEntity.Keys.utcOffset)
+		
+		airport.approaches.forEach { airportApproach in
+			let entity = AirportApproachEntity(context: self.managedObjectContext)
+			entity.name = airportApproach.name
+			entity.final_crs = airportApproach.finalCrs
+			entity.faf_altitude = airportApproach.fafAltitude
+			airportEntity.addToApproaches(entity)
+		}
+		
+		airport.runways.forEach { airportRunway in
+			let entity = AirportRunwayEntity(context: self.managedObjectContext)
+			entity.name = airportRunway.name
+			entity.heading = airportRunway.heading
+			entity.length = airportRunway.length
+			airportEntity.addToRunways(entity)
+		}
+		
+		airport.holdingWaypoints.forEach {
+			let entity = AirportHoldingWaypointEntity(context: self.managedObjectContext)
+			entity.name = $0.name
+			entity.altitude = $0.altitude
+			entity.fuel_burn = $0.fuelBurn
+			airportEntity.addToHolding_waypoints(entity)
+		}
+		
+		airport.arrivalSTARS.forEach {
+			let entity = AirportArrivalSTARSEntity(context: self.managedObjectContext)
+			entity.course = $0.course
+			entity.initial_altitude = $0.initialAltitude
+			entity.name = $0.name
+			airportEntity.addToArrival_stars(entity)
+		}
+		
+		airport.departureSIDS.forEach {
+			let entity = AirportDepartureSIDSEntity(context: self.managedObjectContext)
+			entity.course = $0.course
+			entity.name = $0.name
+			entity.altitude = $0.altitude
+			airportEntity.addToDeparture_sids(entity)
+		}
+		
+		do {
+			try self.managedObjectContext.save()
+		}
+	}
+	
 	public func fetchAirplane() throws -> [Aircraft] {
 		let context = self.managedObjectContext
 		do {
@@ -90,6 +157,15 @@ public class DataStoreImpl: DataStore {
 			let fetchRequestResults = try? context.fetch(request).compactMap { $0 as? AircraftEntity }
 			let airplanes = fetchRequestResults?.compactMap { $0.toAircraftModel() }
 			return airplanes ?? []
+		}
+	}
+	
+	public func fetchAirports() throws -> [Airport] {
+		do {
+			let request = AirportEntity.fetchRequest()
+			let results = try self.managedObjectContext.fetch(request)
+			let airports = results.compactMap({ $0.toModel() })
+			return airports
 		}
 	}
 }

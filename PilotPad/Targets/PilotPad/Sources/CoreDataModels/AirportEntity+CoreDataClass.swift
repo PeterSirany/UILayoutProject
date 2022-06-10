@@ -39,4 +39,23 @@ public class AirportEntity: NSManagedObject {
 		
 		return airport
 	}
+	
+	public struct Keys {
+		private init() { }
+		public static let elevation = "elevation"
+		public static let latitude = "latittude"
+		public static let longitude = "longitude"
+		public static let iata = "iata"
+		public static let icao = "icao"
+		public static let name = "name"
+		public static let reference = "reference"
+		public static let variation = "variation"
+		public static let utcOffset = "utc_offset"
+		public static let approaches = "approaches"
+		public static let arrivalStars = "arrival_stars"
+		public static let departureSids = "departure_sids"
+		public static let holdingWaypoints = "holding_waypoints"
+		public static let runways = "runways"
+		
+	}
 }

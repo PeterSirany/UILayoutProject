@@ -14,6 +14,7 @@ public enum ViewFactoryView: Identifiable, Hashable {
 	case availableAirportsList
 	case newAircraft(aircraft: Aircraft)
 	case existingAircraft(aircraft: Aircraft)
+	case newAirport
 	case mainMenu
 	
 	public var id: UUID {

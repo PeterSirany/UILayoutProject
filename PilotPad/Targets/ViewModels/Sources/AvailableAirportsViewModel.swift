@@ -12,9 +12,22 @@ import Models
 
 public class AvailableAirportsViewModel: ObservableObject {
 	private let navController: NavigationContextController
+	private let dataStore: DataStore
 	
-	public init(navigationContext: NavigationContextController) {
+	public init(dataStore: DataStore, navigationContext: NavigationContextController) {
+		self.dataStore = dataStore
 		self.navController = navigationContext
+		fetchAirports()
+	}
+	
+	func fetchAirports() {
+		do {
+			let airports = try self.dataStore.fetchAirports()
+			print(airports.map { $0.description })
+			print("Num Airports : \(airports.count)")
+		} catch {
+			print("Error Fetching: \(error)")
+		}
 	}
 	
 	public func back() {
@@ -22,7 +35,7 @@ public class AvailableAirportsViewModel: ObservableObject {
 	}
 	
 	public func createNewAircraft() {
-		
+		navController.show(view: .newAirport)
 	}
 	
 	public func airportSelected() {

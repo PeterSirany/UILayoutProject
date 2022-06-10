@@ -54,10 +54,10 @@ extension AirportEntity {
 extension AirportEntity {
 
     @objc(addArrival_starsObject:)
-    @NSManaged public func addToArrival_stars(_ value: AirportArivalSTARSEntity)
+    @NSManaged public func addToArrival_stars(_ value: AirportArrivalSTARSEntity)
 
     @objc(removeArrival_starsObject:)
-    @NSManaged public func removeFromArrival_stars(_ value: AirportArivalSTARSEntity)
+    @NSManaged public func removeFromArrival_stars(_ value: AirportArrivalSTARSEntity)
 
     @objc(addArrival_stars:)
     @NSManaged public func addToArrival_stars(_ values: NSSet)

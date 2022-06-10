@@ -33,9 +33,17 @@ public class ViewFactory {
 			self.aircraft(aircraft, newAircraft: false)
 		case .mainMenu:
 			self.mainMenu()
+		case .newAirport:
+			self.newAirport()
 		}
 	}
 	
+	@ViewBuilder
+	func newAirport() -> some View {
+		CreateNewAirportView(
+			viewModel: .init(dataStore: self.dataStore, navigationContext: self.navigationContext)
+		)
+	}
 	@ViewBuilder
 	func availableAircraftList() -> some View {
 		AvailableAircraftView(
@@ -44,7 +52,7 @@ public class ViewFactory {
 	}
 	@ViewBuilder
 	func availableAirportsList() -> some View {
-		AvailableAirportsView(viewModel: .init(navigationContext: self.navigationContext))
+		AvailableAirportsView(viewModel: .init(dataStore: self.dataStore, navigationContext: self.navigationContext))
 	}
 	
 	@ViewBuilder
