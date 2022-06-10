@@ -36,7 +36,59 @@
         <attribute name="type" optional="YES" attributeType="String"/>
         <attribute name="weatherRadarSystem" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
+    <entity name="AirportApproachEntity" representedClassName="AirportApproachEntity" syncable="YES">
+        <attribute name="faf_altitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="final_crs" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="airport" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AirportEntity" inverseName="approaches" inverseEntity="AirportEntity"/>
+    </entity>
+    <entity name="AirportArrivalSTARSEntity" representedClassName="AirportArrivalSTARSEntity" syncable="YES">
+        <attribute name="course" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="initial_altitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="airport" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AirportEntity" inverseName="arrival_stars" inverseEntity="AirportEntity"/>
+    </entity>
+    <entity name="AirportDepartureSIDSEntity" representedClassName="AirportDepartureSIDSEntity" syncable="YES">
+        <attribute name="altitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="course" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="airport" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AirportEntity" inverseName="departure_sids" inverseEntity="AirportEntity"/>
+    </entity>
+    <entity name="AirportEntity" representedClassName="AirportEntity" syncable="YES">
+        <attribute name="elevation" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="iata" optional="YES" attributeType="String"/>
+        <attribute name="icao" optional="YES" attributeType="String"/>
+        <attribute name="latittude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="reference" optional="YES" attributeType="String"/>
+        <attribute name="utc_offset" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="variation" optional="YES" attributeType="String"/>
+        <relationship name="approaches" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AirportApproachEntity" inverseName="airport" inverseEntity="AirportApproachEntity"/>
+        <relationship name="arrival_stars" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AirportArrivalSTARSEntity" inverseName="airport" inverseEntity="AirportArrivalSTARSEntity"/>
+        <relationship name="departure_sids" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AirportDepartureSIDSEntity" inverseName="airport" inverseEntity="AirportDepartureSIDSEntity"/>
+        <relationship name="holding_waypoints" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AirportHoldingWaypointEntity" inverseName="airport" inverseEntity="AirportHoldingWaypointEntity"/>
+        <relationship name="runways" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AirportRunwayEntity" inverseName="airport" inverseEntity="AirportRunwayEntity"/>
+    </entity>
+    <entity name="AirportHoldingWaypointEntity" representedClassName="AirportHoldingWaypointEntity" syncable="YES">
+        <attribute name="altitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="fuel_burn" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="airport" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AirportEntity" inverseName="holding_waypoints" inverseEntity="AirportEntity"/>
+    </entity>
+    <entity name="AirportRunwayEntity" representedClassName="AirportRunwayEntity" syncable="YES">
+        <attribute name="heading" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="length" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="airport" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AirportEntity" inverseName="runways" inverseEntity="AirportEntity"/>
+    </entity>
     <elements>
-        <element name="Okay" positionX="-63" positionY="-18" width="128" height="539"/>
+        <element name="AircraftEntity" positionX="-207.26953125" positionY="220.01171875" width="128" height="539"/>
+        <element name="AirportApproachEntity" positionX="312.53125" positionY="495.98828125" width="128" height="103"/>
+        <element name="AirportArrivalSTARSEntity" positionX="316.53125" positionY="350.70703125" width="128" height="103"/>
+        <element name="AirportDepartureSIDSEntity" positionX="310.54296875" positionY="645.609375" width="128" height="103"/>
+        <element name="AirportEntity" positionX="-32.0078125" positionY="335.91015625" width="128" height="253"/>
+        <element name="AirportHoldingWaypointEntity" positionX="319.2109375" positionY="811.6015625" width="66.95703125" height="103"/>
+        <element name="AirportRunwayEntity" positionX="297.8046875" positionY="226.82421875" width="156.48046875" height="103"/>
     </elements>
 </model>
