@@ -8,20 +8,7 @@
 
 import Foundation
 import CoreData
-
-public enum MeasurementType: String {
-	case knots
-}
-
-public class DisplacedThreshold {
-	public init(value: Double, measurementType: MeasurementType) {
-		self.value = value
-		self.measurementType = measurementType
-	}
-	
-	public let value: Double
-	public let measurementType: MeasurementType
-}
+import Models
 
 @objc(DisplacedThresholdEntity)
 public class DisplacedThresholdEntity: NSManagedObject {

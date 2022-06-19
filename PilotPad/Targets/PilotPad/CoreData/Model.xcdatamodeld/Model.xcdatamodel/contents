@@ -86,7 +86,7 @@
     </entity>
     <entity name="HeadingEntity" representedClassName="HeadingEntity" syncable="YES">
         <attribute name="degreeStyle" optional="YES" attributeType="String"/>
-        <attribute name="value" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="value" optional="YES" attributeType="String"/>
     </entity>
     <entity name="RunwayIntersectionEntity" representedClassName="RunwayIntersectionEntity" syncable="YES">
         <attribute name="distanceFromStart" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>

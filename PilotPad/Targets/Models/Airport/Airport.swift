@@ -9,121 +9,55 @@
 import Foundation
 import CoreLocation
 
-public class Airport: CustomStringConvertible, Identifiable, Hashable {
-	public let id: UUID = UUID()
-	public var icao: String = ""
-	public var iata: String = ""
-	public var name: String = ""
-	public var latitude: CLLocationDegrees = -1
-	public var longitude: CLLocationDegrees = -1
-	public var elevation: Double = -1
-	public var variation: String? = nil
-	public var reference: String = ""
-	public var utcOffset: Date = .init()
-	public var runways: [AirportRunway] = []
-	public var holdingWaypoints: [AirportHoldingWaypoint] = []
-	public var arrivalSTARS: [AirportArrivalSTARS] = []
-	public var departureSIDS: [AirportDepartureSIDS] = []
-	public var approaches: [AirportApproach] = []
+public class Airport: Viewable {
+	public let icao: String
+	public let iata: String
+	public let name: String
+	public	let coordinateString: String
+	public let elevation: Double
+	public let variation: Heading
+	public let runways: [AirportRunway]
 	
-	public init() { }
+	public init(icao: String, iata: String, name: String, coordinateString: String, elevation: Double, variation: Heading, runways: [AirportRunway]) {
+		self.icao = icao
+		self.iata = iata
+		self.name = name
+		self.coordinateString = coordinateString
+		self.elevation = elevation
+		self.variation = variation
+		self.runways = runways
+	}
 	
 	public var description: String {
 		return """
 icao: \(icao)
 iata: \(iata)
 name: \(name)
-variation: \(variation ?? "NA")
-reference: \(reference)
-coordinate: (\(latitude), \(longitude))
+variation: \(variation)
+coordinate: (\(coordinateString))
 elevation: \(elevation)
-utcOffset: \(utcOffset)
 runways: \(runways.map { $0.description }.joined(separator: " - "))
-waypoints: \(holdingWaypoints.map { $0.description }.joined(separator: " - "))
-arrivalSTARS: \(arrivalSTARS.map { $0.description }.joined(separator: " - "))
-departureSIDS: \(departureSIDS.map { $0.description }.joined(separator: " - "))
-approaches: \(approaches.map { $0.description }.joined(separator: " - "))
 """
 	}
-}
-
-//public class AirportRunway: CustomStringConvertible {
-//	public var heading: Double
-//	public var length: Double
-//	public var name: String
-//	
-//	public var description: String {
-//		return "Runway \(name), heading: \(heading)º, length: \(length)ft"
-//	}
-//	
-//	public init() {
-//		self.name = ""
-//		self.length = -1
-//		self.heading = -1
-//	}
-//}
-
-public class AirportHoldingWaypoint: CustomStringConvertible {
-	public var name: String
-	public var fuelBurn: Double
-	public var altitude: Double
 	
-	public var description: String {
-		return "Waypoint \(name), fuel: \(fuelBurn), altitude: \(altitude)ft"
+	public func hash(into hasher: inout Hasher) {
+		hasher.combine(icao)
+		hasher.combine(iata)
+		hasher.combine(name)
+		hasher.combine(coordinateString)
+		hasher.combine(elevation)
+		hasher.combine(variation)
+		hasher.combine(runways)
 	}
 	
-	public init() {
-		name = ""
-		fuelBurn = -1
-		altitude = -1
-	}
-}
-
-public class AirportArrivalSTARS: CustomStringConvertible {
-	public var name: String
-	public var initialAltitude: Double
-	public var course: Double
-	
-	public var description: String {
-		return "Arrival \(name), course: \(course)º, initial Altitude: \(initialAltitude)ft"
-	}
-	
-	public init() {
-		name = ""
-		initialAltitude = -1
-		course = -1
-	}
-}
-
-public class AirportDepartureSIDS: CustomStringConvertible {
-	public var name: String
-	public var course: Double
-	public var altitude: Double
-	
-	public var description: String {
-		return "Departure \(name), course: \(course)º, altitude: \(altitude)ft"
-	}
-	
-	public init() {
-		name = ""
-		course = -1
-		altitude = -1
-	}
-}
-
-public class AirportApproach: CustomStringConvertible {
-	public var name: String
-	public var finalCrs: Double
-	public var fafAltitude: Double
-	
-	public var description: String {
-		return "Approach \(name), final: \(finalCrs)º, altitude: \(fafAltitude)ft"
-	}
-	
-	public init() {
-		name = ""
-		finalCrs = -1
-		fafAltitude = -1
+	public static func == (lhs: Airport, rhs: Airport) -> Bool {
+		return lhs.icao == rhs.icao
+		&& lhs.iata == rhs.iata
+		&& lhs.name == rhs.name
+		&& lhs.coordinateString == rhs.coordinateString
+		&& lhs.elevation == rhs.elevation
+		&& lhs.variation == rhs.variation
+		&& lhs.runways == rhs.runways
 	}
 }
 

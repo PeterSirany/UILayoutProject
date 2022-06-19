@@ -25,68 +25,34 @@ public class CreateNewAirportViewModel: ObservableObject {
 	@Published public var name: String?
 	@Published public var latLong: String?
 	@Published public var elevation: String?
-	@Published public var variation: String?
+	@Published public var airportVariation: HeadingVariation?
+	@Published public var airportVariationValue: String?
 	
 	public init(dataStore: DataStore, navigationContext: NavigationContextController) {
 		self.dataStore = dataStore
 		self.navController = navigationContext
+		self.airportVariation = .magneticVariation
 	}
 	
 	func save() {
-		let airport = Airport()
-		airport.iata = "LAX"
-		airport.icao = "KLAX"
-		airport.name = "Los Angeles International Airport"
-		airport.latitude = 33.9424964
-		airport.longitude = -118.4080486
-		airport.elevation = 127.8
-		airport.variation = "12E"
-		airport.reference = "True"
-		airport.utcOffset = .now
+		print("Saving new Airport")
+//		let airport = Airport()
+//		airport.iata = "LAX"
+//		airport.icao = "KLAX"
+//		airport.name = "Los Angeles International Airport"
+//		airport.latitude = 33.9424964
+//		airport.longitude = -118.4080486
+//		airport.elevation = 127.8
+//		airport.variation = "12E"
+//		airport.reference = "True"
+//		airport.utcOffset = .now
 		
 		// runways
-		let runway25L = AirportRunway()
-		runway25L.heading = 71
-		runway25L.length = 11095
-		runway25L.name = "25L"
-		let runway24R = AirportRunway()
-		runway24R.heading = 71
-		runway24R.length = 8926
-		runway24R.name = "24R"
-		airport.runways = [runway24R, runway25L]
-		
-		// holding waypoint
-		let waypoint = AirportHoldingWaypoint()
-		waypoint.name = "IMPED"
-		waypoint.fuelBurn = 1500
-		waypoint.altitude = 12000
-		airport.holdingWaypoints = [waypoint]
-		
-		// arrival STARS
-		let arrival = AirportArrivalSTARS()
-		arrival.course = 267
-		arrival.initialAltitude = 12000
-		arrival.name = "CHUWY1"
-		airport.arrivalSTARS = [arrival]
-		
-		// departure SIDS
-		let departure = AirportDepartureSIDS()
-		departure.course = 119
-		departure.altitude = 4000
-		departure.name = "RIDAP5"
-		airport.departureSIDS = [departure]
-		
-		// approaches
-		let approach = AirportApproach()
-		approach.name = "ISL 12L"
-		approach.finalCrs = 119
-		approach.fafAltitude = 2000
-		airport.approaches = [approach]
-		do {
-			try self.dataStore.save(airport: airport)
-		} catch {
-			print("Error saving airport: \(error)")
-		}
+//		do {
+//			try self.dataStore.save(airport: airport)
+//		} catch {
+//			print("Error saving airport: \(error)")
+//		}
 	}
 }
 
@@ -110,7 +76,8 @@ public struct CreateNewAirportView: View {
 				HStack {
 					SimpleTextField(text: self.$viewModel.icao, title: "ICAO", placeholder: "KLAX")
 					SimpleTextField(text: self.$viewModel.iata, title: "IATA", placeholder: "LAX")
-					SimpleTextField(text: self.$viewModel.variation, title: "Variation", placeholder: "12E")
+					Spacer()
+					VariationInputField(selectedVariation: self.$viewModel.airportVariation, value: self.$viewModel.airportVariationValue)
 				}
 				HStack {
 					SimpleTextField(text: self.$viewModel.name, title: "Name", placeholder: "Airport Name")
@@ -124,3 +91,31 @@ public struct CreateNewAirportView: View {
 
 	}
 }
+
+struct VariationInputField: View {
+	@Binding var selectedVariation: HeadingVariation?
+	@Binding var value: String?
+	
+	private var selectedSegment: Binding<Int> { Binding (
+		get: { self.selectedVariation == .trueVariation ? 0 : 1},
+		set: { self.selectedVariation = $0 == 0 ? .trueVariation : .magneticVariation }
+		)
+	}
+	
+	var body: some View {
+		HStack {
+			SimpleTextField(text: $value, title: "Variation", placeholder: "12E")
+			Picker("Variation", selection: selectedSegment) {
+				Text("True").tag(0)
+				Text("Mag").tag(1)
+			}.pickerStyle(.segmented)
+		}
+	}
+}
+
+struct VariationInputField_Previews: PreviewProvider {
+	static var previews: some View {
+		VariationInputField(selectedVariation: .constant(.magneticVariation), value: .constant("14E"))
+	}
+}
+
