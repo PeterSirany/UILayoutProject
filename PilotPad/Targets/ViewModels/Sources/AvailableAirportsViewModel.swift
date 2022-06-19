@@ -13,6 +13,7 @@ import Models
 public class AvailableAirportsViewModel: ObservableObject {
 	private let navController: NavigationContextController
 	private let dataStore: DataStore
+	@Published public var airports = [Airport]()
 	
 	public init(dataStore: DataStore, navigationContext: NavigationContextController) {
 		self.dataStore = dataStore

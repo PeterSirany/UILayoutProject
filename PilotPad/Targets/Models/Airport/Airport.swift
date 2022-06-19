@@ -9,7 +9,8 @@
 import Foundation
 import CoreLocation
 
-public class Airport: CustomStringConvertible {
+public class Airport: CustomStringConvertible, Identifiable, Hashable {
+	public let id: UUID = UUID()
 	public var icao: String = ""
 	public var iata: String = ""
 	public var name: String = ""
@@ -46,21 +47,21 @@ approaches: \(approaches.map { $0.description }.joined(separator: " - "))
 	}
 }
 
-public class AirportRunway: CustomStringConvertible {
-	public var heading: Double
-	public var length: Double
-	public var name: String
-	
-	public var description: String {
-		return "Runway \(name), heading: \(heading)º, length: \(length)ft"
-	}
-	
-	public init() {
-		self.name = ""
-		self.length = -1
-		self.heading = -1
-	}
-}
+//public class AirportRunway: CustomStringConvertible {
+//	public var heading: Double
+//	public var length: Double
+//	public var name: String
+//	
+//	public var description: String {
+//		return "Runway \(name), heading: \(heading)º, length: \(length)ft"
+//	}
+//	
+//	public init() {
+//		self.name = ""
+//		self.length = -1
+//		self.heading = -1
+//	}
+//}
 
 public class AirportHoldingWaypoint: CustomStringConvertible {
 	public var name: String

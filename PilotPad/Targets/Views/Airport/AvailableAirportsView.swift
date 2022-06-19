@@ -21,10 +21,18 @@ public struct AvailableAirportsView: View {
 		SectionContainer(
 			sectionTitle: "Airports",
 			contentView: {
-				List {
-						Text("Hello")
-						Text("Hello")
-						Text("Hello")
+				ZStack {
+				List(self.viewModel.airports) { airport in
+					AirportItemCellView(
+						numberOfRunways: airport.runways.count,
+						icao: airport.icao,
+						iata: airport.iata,
+						name: airport.name
+					)
+				}
+					if self.viewModel.airports.isEmpty {
+						Text("Create an airport to get started.")
+					}
 				}
 			},
 			titleAccessoryView: {
@@ -37,10 +45,53 @@ public struct AvailableAirportsView: View {
 					Button(action: {
 						self.viewModel.createNewAircraft()
 					}, label: {
-						Text("Create New")
+						Text("Create")
 					})
 				}
 			}
 		)
 	}
 }
+
+struct AirportItemCellView: View {
+	let numberOfRunways: Int
+	let icao: String
+	let iata: String
+	let name: String
+	
+	var body: some View {
+		HStack(spacing: 25) {
+			Text(icao)
+				.font(.system(size: 16))
+				.foregroundColor(Color.preliminaryTextColor)
+			Text(iata)
+				.font(.system(size: 16))
+				.foregroundColor(Color.preliminaryTextColor)
+			Text(name)
+				.font(.system(size: 16))
+				.foregroundColor(Color.preliminaryTextColor)
+			Spacer()
+			HStack(spacing: 25) {
+				Text("\(numberOfRunways)") // number of runways
+					.foregroundColor(Color.preliminaryTextColor)
+				Image("arrow-right-icon", bundle: .main)
+					.renderingMode(.template)
+					.resizable()
+					.foregroundColor(Color.preliminaryTextColor)
+					.frame(width: 12, height: 12, alignment: .center)
+			}
+		}.padding(.horizontal)
+			.addRoundedCornerStrokeBorder(strokeColor: .preliminaryTextColor, backgroundColor: .darkBackgroundColor)
+	}
+}
+
+struct AirportItemCellView_Previews: PreviewProvider {
+	static var previews: some View {
+		AirportItemCellView(
+			numberOfRunways: 4,
+			icao: "KLAX",
+			iata: "LAX",
+			name: "Los Angeles International Airport")
+	}
+}
+

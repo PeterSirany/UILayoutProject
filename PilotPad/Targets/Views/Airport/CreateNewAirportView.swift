@@ -11,9 +11,21 @@ import SwiftUI
 import Models
 import ViewModels
 
+public enum AirportVariation: String {
+	case trueVariation
+	case magneticVariation
+}
+
 public class CreateNewAirportViewModel: ObservableObject {
 	private let dataStore: DataStore
 	private let navController: NavigationContextController
+	
+	@Published public var icao: String?
+	@Published public var iata: String?
+	@Published public var name: String?
+	@Published public var latLong: String?
+	@Published public var elevation: String?
+	@Published public var variation: String?
 	
 	public init(dataStore: DataStore, navigationContext: NavigationContextController) {
 		self.dataStore = dataStore
@@ -86,10 +98,29 @@ public struct CreateNewAirportView: View {
 	}
 	
 	public var body: some View {
-		Button(action: {
-			self.viewModel.save()
-		}, label: {
-			Text("Create")
-		})
+		ScrollView {
+			getMetadataInputs()
+		}
+	}
+	
+	@ViewBuilder
+	func getMetadataInputs() -> some View {
+		SectionContainer(sectionTitle: "Data Sets") {
+			VStack(alignment: .leading) {
+				HStack {
+					SimpleTextField(text: self.$viewModel.icao, title: "ICAO", placeholder: "KLAX")
+					SimpleTextField(text: self.$viewModel.iata, title: "IATA", placeholder: "LAX")
+					SimpleTextField(text: self.$viewModel.variation, title: "Variation", placeholder: "12E")
+				}
+				HStack {
+					SimpleTextField(text: self.$viewModel.name, title: "Name", placeholder: "Airport Name")
+					SimpleTextField(text: self.$viewModel.latLong, title: "Lat/Lng", placeholder: "N3220.5E11845.5")
+					SimpleTextField(text: self.$viewModel.elevation, title: "Elevation", placeholder: "143")
+				}
+			}
+		} titleAccessoryView: {
+			Button(action: { self.viewModel.save() }, label: { Text("Create") })
+		}
+
 	}
 }
