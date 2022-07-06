@@ -71,7 +71,7 @@ public struct CreateNewAirportView: View {
 	
 	@ViewBuilder
 	func getMetadataInputs() -> some View {
-		SectionContainer(sectionTitle: "Data Sets") {
+		SectionContainer(sectionTitle: "Airport Data Sets") {
 			VStack(alignment: .leading) {
 				HStack {
 					SimpleTextField(text: self.$viewModel.icao, title: "ICAO", placeholder: "KLAX")
