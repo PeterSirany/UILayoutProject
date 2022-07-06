@@ -54,6 +54,10 @@ public class CreateNewAirportViewModel: ObservableObject {
 //			print("Error saving airport: \(error)")
 //		}
 	}
+	
+	func createNewRunway() {
+		
+	}
 }
 
 public struct CreateNewAirportView: View {
@@ -66,6 +70,7 @@ public struct CreateNewAirportView: View {
 	public var body: some View {
 		ScrollView {
 			getMetadataInputs()
+			getRunwaysContainerView()
 		}
 	}
 	
@@ -87,6 +92,21 @@ public struct CreateNewAirportView: View {
 			}
 		} titleAccessoryView: {
 			Button(action: { self.viewModel.save() }, label: { Text("Create") })
+		}
+
+	}
+	
+	@ViewBuilder
+	func getRunwaysContainerView() -> some View {
+		SectionContainer(sectionTitle: "Runways") {
+			VStack {
+				RunwayItemCellView(runway: .init(name: "12L", length: 4500, touchDownZoneElevation: 124.3, heading: Heading.init(value: "12.0", variation: .magneticVariation), displacedThreshold: .init(value: 112, measurementType: .knots), departureSids: [], intersections: []))
+					.borderedCell()
+				RunwayItemCellView(runway: .init(name: "24R", length: 4875, touchDownZoneElevation: 124.3, heading: Heading.init(value: "12.0", variation: .magneticVariation), displacedThreshold: .init(value: 112, measurementType: .knots), departureSids: [], intersections: []))
+					.borderedCell()
+			}
+		} titleAccessoryView: {
+			Button(action: { self.viewModel.createNewRunway() }, label: { Text("Create") })
 		}
 
 	}

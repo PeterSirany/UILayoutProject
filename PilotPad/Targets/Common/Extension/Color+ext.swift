@@ -25,4 +25,6 @@ public extension Color {
 		static let shadowColor = Color("ShadowColor")
 		
 		static let blueBorderColor = Color("BlueBorderColor")
+	static let cellBorderColor = Color("CellBorderColor")
+	static let cellLabelColor = Color("CellLabelColor")
 }

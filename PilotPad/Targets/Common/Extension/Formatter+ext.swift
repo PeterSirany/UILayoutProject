@@ -55,4 +55,11 @@ public extension Formatter {
 		formatter.positivePrefix = formatter.plusSign
 		return formatter
 	}()
+	
+	static let lengthFormatter: NumberFormatter = {
+		let formatter = NumberFormatter()
+		formatter.numberStyle = .decimal
+		formatter.groupingSize = 3
+		return formatter
+	}()
 }

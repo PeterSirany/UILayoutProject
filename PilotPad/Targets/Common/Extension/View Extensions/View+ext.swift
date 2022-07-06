@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-public extension View {
+public extension View {	
 	@ViewBuilder func setHidden(_ isHidden: Bool) -> some View {
 		if !isHidden {
 			self
