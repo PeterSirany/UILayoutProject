@@ -35,9 +35,15 @@ public class ViewFactory {
 			self.mainMenu()
 		case .newAirport:
 			self.newAirport()
+		case .newRunway:
+			self.newRunway()
 		}
 	}
 	
+	@ViewBuilder
+	func newRunway() -> some View {
+		CreateNewRunwayView(viewModel: .init(dataStore: self.dataStore, navigationContext: self.navigationContext))
+	}
 	@ViewBuilder
 	func newAirport() -> some View {
 		CreateNewAirportView(

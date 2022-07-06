@@ -8,12 +8,19 @@
 
 import Foundation
 
-public enum MeasurementType: String {
+public enum MeasurementType: String, Identifiable {
 	case knots
+	case meters
+	case feet
+}
+extension MeasurementType {
+	public var id: String {
+		return self.rawValue
+	}
 }
 
 public class DisplacedThreshold: Viewable {
-	public let value: Double
+	public var value: Double
 	public let measurementType: MeasurementType
 	
 	public init(value: Double, measurementType: MeasurementType) {

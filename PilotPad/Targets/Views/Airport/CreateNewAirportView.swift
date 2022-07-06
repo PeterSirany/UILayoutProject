@@ -58,7 +58,7 @@ public class CreateNewAirportViewModel: ObservableObject {
 	}
 	
 	func createNewRunway() {
-		
+		self.navController.show(view: .newRunway)
 	}
 }
 
