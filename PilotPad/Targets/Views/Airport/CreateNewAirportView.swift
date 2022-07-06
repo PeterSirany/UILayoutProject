@@ -27,11 +27,13 @@ public class CreateNewAirportViewModel: ObservableObject {
 	@Published public var elevation: String?
 	@Published public var airportVariation: HeadingVariation?
 	@Published public var airportVariationValue: String?
+	@Published public var runways: [AirportRunway]
 	
 	public init(dataStore: DataStore, navigationContext: NavigationContextController) {
 		self.dataStore = dataStore
 		self.navController = navigationContext
 		self.airportVariation = .magneticVariation
+		self.runways = []
 	}
 	
 	func save() {
@@ -100,10 +102,10 @@ public struct CreateNewAirportView: View {
 	func getRunwaysContainerView() -> some View {
 		SectionContainer(sectionTitle: "Runways") {
 			VStack {
-				RunwayItemCellView(runway: .init(name: "12L", length: 4500, touchDownZoneElevation: 124.3, heading: Heading.init(value: "12.0", variation: .magneticVariation), displacedThreshold: .init(value: 112, measurementType: .knots), departureSids: [], intersections: []))
-					.borderedCell()
-				RunwayItemCellView(runway: .init(name: "24R", length: 4875, touchDownZoneElevation: 124.3, heading: Heading.init(value: "12.0", variation: .magneticVariation), displacedThreshold: .init(value: 112, measurementType: .knots), departureSids: [], intersections: []))
-					.borderedCell()
+				ForEach(viewModel.runways) { runway in
+					RunwayItemCellView(runway: runway)
+						.borderedCell()
+				}
 			}
 		} titleAccessoryView: {
 			Button(action: { self.viewModel.createNewRunway() }, label: { Text("Create") })
