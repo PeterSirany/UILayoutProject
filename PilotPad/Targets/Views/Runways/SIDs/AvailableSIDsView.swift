@@ -7,3 +7,24 @@
 //
 
 import Foundation
+import Models
+import Common
+import SwiftUI
+
+public class AvailableSIDsViewModel: ObservableObject {
+	public func createNew() {
+		
+	}
+}
+
+public struct AvailableSIDsView: View {
+	public let viewModel: AvailableSIDsViewModel
+	public var body: some View {
+		SectionContainer(sectionTitle: "Departure SIDS") {
+			Text("foo")
+		} titleAccessoryView: {
+			Button(action: { self.viewModel.createNew()() }, label: { Text("Create") })
+		}
+
+	}
+}
