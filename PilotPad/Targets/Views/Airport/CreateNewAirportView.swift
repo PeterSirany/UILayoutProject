@@ -60,6 +60,10 @@ public class CreateNewAirportViewModel: ObservableObject {
 	func createNewRunway() {
 		self.navController.show(view: .newRunway)
 	}
+	
+	public func back() {
+		self.navController.back()
+	}
 }
 
 public struct CreateNewAirportView: View {
@@ -93,9 +97,11 @@ public struct CreateNewAirportView: View {
 				}
 			}
 		} titleAccessoryView: {
-			Button(action: { self.viewModel.save() }, label: { Text("Create") })
+			HStack {
+				Button(action: { self.viewModel.back() }, label: { Text("Back") })
+				Button(action: { self.viewModel.save() }, label: { Text("Create") })
+			}
 		}
-
 	}
 	
 	@ViewBuilder

@@ -35,6 +35,12 @@ public class CreateNewAirportRunwayViewModel: ObservableObject {
 	public func back() {
 		self.navigationContext.back()
 	}
+	
+	public var availableSidsViewModel: AvailableSIDsViewModel {
+		return .init(existingSids: [
+			.init(name: "CASTA ONE", waypoints: [], climbGradient: .init(value: 112, measurementType: .feet), initialRunwayHeading: .init(value: "120", variation: nil))
+		], navigationContext: self.navigationContext)
+	}
 }
 
 
@@ -44,6 +50,7 @@ public struct CreateNewRunwayView: View {
 	public var body: some View {
 		ScrollView {
 			buildMetadataView()
+			AvailableSIDsView(viewModel: self.viewModel.availableSidsViewModel)
 		}
 	}
 	
@@ -61,16 +68,14 @@ public struct CreateNewRunwayView: View {
 					SimpleDecimalTextField(value: self.$viewModel.displacedThresholdValue, title: "Displaced THR", placeholder: "123")
 					MeasurementTypeSelectorView(selectedMeasurement: self.$viewModel.displacedThresholdUnits, selectionOptions: [.feet, .meters])
 				}
-			}.padding()
+			}
 		} titleAccessoryView: {
 			HStack {
 				Button(action: { self.viewModel.back() }, label: { Text("Back") })
 				Button(action: { self.viewModel.save() }, label: { Text("Save") })
 			}
 		}
-
 	}
-	
 }
 
 struct RunwayMetadataInputView: View {

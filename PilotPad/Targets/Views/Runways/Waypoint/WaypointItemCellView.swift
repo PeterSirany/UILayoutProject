@@ -1,26 +1,26 @@
 //
-//  SID.swift
+//  WaypointItemCellView.swift
 //  Views
 //
-//  Created by Richard Poutier on 6/14/22.
+//  Created by Richard Poutier on 7/7/22.
 //  Copyright © 2022 Peter.Sirany. All rights reserved.
 //
 
 import Foundation
-import Models
 import SwiftUI
+import Models
 import Common
 
-public struct SIDItemCellView: View {
-	let sid: AirportDepartureSid
+public struct WaypointItemCellView: View {
+	public let waypoint: Waypoint
 	
 	public var body: some View {
 		HStack(spacing: Constants.itemCellSpacing) {
-			Text("Name")
+			Text("Waypoint Name")
 				.cellLabel()
-			Text("Course")
+			Text("Variation")
 				.cellLabel()
-			Text("Initial Altitude")
+			Text("Coordinate")
 				.cellLabel()
 			Spacer()
 		}.borderedCell()

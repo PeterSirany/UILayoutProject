@@ -10,21 +10,33 @@ import Foundation
 import Models
 import Common
 import SwiftUI
+import ViewModels
 
 public class AvailableSIDsViewModel: ObservableObject {
+	@Published public var sids: [AirportDepartureSid]
+	private let navigationContext: NavigationContextController
+	
+	public init(existingSids: [AirportDepartureSid], navigationContext: NavigationContextController) {
+		self.sids = existingSids
+		self.navigationContext = navigationContext
+	}
+	
 	public func createNew() {
-		
+		self.navigationContext.show(view: .newSID)
 	}
 }
 
 public struct AvailableSIDsView: View {
-	public let viewModel: AvailableSIDsViewModel
+	@ObservedObject public var viewModel: AvailableSIDsViewModel
 	public var body: some View {
 		SectionContainer(sectionTitle: "Departure SIDS") {
-			Text("foo")
+			VStack(spacing: 10) {
+				ForEach(self.viewModel.sids) { departureSid in
+					SIDItemCellView(sid: departureSid)
+				}
+			}
 		} titleAccessoryView: {
-			Button(action: { self.viewModel.createNew()() }, label: { Text("Create") })
+			Button(action: { self.viewModel.createNew() }, label: { Text("Create") })
 		}
-
 	}
 }

@@ -33,6 +33,10 @@ public class CreateNewSIDViewModel: ObservableObject {
 	public func back() {
 		self.navigationContext.back()
 	}
+	
+	public var availableWaypointsViewModel: AvailableWaypointsViewModel {
+		return .init(waypoints: [.init(name: "AKLx", coordinateRepresentation: "", variation: .init(value: "", variation: nil), type: .sid, altitude: nil, speed: nil)], navigationContext: self.navigationContext)
+	}
 }
 
 
@@ -41,6 +45,7 @@ public struct CreateNewSIDView: View {
 	public var body: some View {
 		ScrollView {
 			getSIDMetadataSection()
+			AvailableWaypointsView(viewModel: self.viewModel.availableWaypointsViewModel)
 		}
 	}
 	
@@ -51,9 +56,12 @@ public struct CreateNewSIDView: View {
 				SimpleTextField(text: self.$viewModel.procedureName, title: "Name", placeholder: "CASTA ONE")
 				SimpleDecimalTextField(value: self.$viewModel.climbGradientValue, title: "Required Climb Gradient", placeholder: "350")
 				MeasurementTypeSelectorView(selectedMeasurement: self.$viewModel.climbGradientMeasurementType, selectionOptions: [.meters, .feet, .knots])
-			}.borderedCell()
+			}
 		} titleAccessoryView: {
-			Button(action: { self.viewModel.save() }, label: { Text("Save") } )
+			HStack {
+				Button(action: { self.viewModel.back() }, label: { Text("Back") } )
+				Button(action: { self.viewModel.save() }, label: { Text("Save") } )
+			}
 		}
 	}
 }

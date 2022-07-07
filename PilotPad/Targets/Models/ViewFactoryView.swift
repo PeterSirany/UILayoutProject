@@ -17,6 +17,7 @@ public enum ViewFactoryView: Identifiable, Hashable {
 	case newAirport
 	case newRunway
 	case mainMenu
+	case newSID
 	
 	public var id: UUID {
 		return UUID()

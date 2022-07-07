@@ -37,7 +37,14 @@ public class ViewFactory {
 			self.newAirport()
 		case .newRunway:
 			self.newRunway()
+		case .newSID:
+			self.newSID()
 		}
+	}
+	
+	@ViewBuilder
+	func newSID() -> some View {
+		CreateNewSIDView(viewModel: .init(dataStore: self.dataStore, navigationContext: self.navigationContext))
 	}
 	
 	@ViewBuilder

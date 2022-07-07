@@ -78,15 +78,13 @@ struct SectionContainer<Content: View, Accessory: View>: View  {
 			ZStack(alignment: .top) {
 				RoundedRectangle(cornerRadius: 12.0)
 					.fill(Color.blackBackgroundColor)
-					.padding(.horizontal)
-					.padding(.bottom)
 					.background(Color.containerColor)
 					.cornerRadius(12)
 				
 				contentView()
 					.padding()
 				
-			}
+			}.padding([.horizontal, .bottom])
 		}
 		.background(Color.containerColor)
 		.clipped()
@@ -97,17 +95,17 @@ struct SectionContainer<Content: View, Accessory: View>: View  {
 struct ContainerViews_Previews: PreviewProvider {
 	static var frameHeight = 150
 	static var previews: some View {
+		ScrollView {
 		SectionContainer(
-			sectionTitle: "Container",
+			sectionTitle: "Container Title",
 			contentView: {
-				HStack {
-					EmptyView()
-				}
+				SIDItemCellView(sid: .init(name: "", waypoints: [], climbGradient: .init(value: 112, measurementType: .meters), initialRunwayHeading: .init(value: "112", variation: nil)))
 			},
 			titleAccessoryView: {
-				Text("hello")
+				Button(action: { }, label: { Text("Action")})
 			}
 		)
+		}
 			.preferredColorScheme(.dark)
 	}
 }
