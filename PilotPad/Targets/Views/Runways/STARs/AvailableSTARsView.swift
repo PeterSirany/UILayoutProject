@@ -14,15 +14,23 @@ import ViewModels
 
 public class AvailableSTARsViewModel: ObservableObject {
 	@Published public var stars: [AirportArrivalStar]
+	public var databaseStars: [AirportArrivalStar]
+	
 	private let navigationContext: NavigationContextController
 	
-	public init(existingStars: [AirportArrivalStar], navigationContext: NavigationContextController) {
+	public init(existingStars: [AirportArrivalStar], dataStore: DataStore, navigationContext: NavigationContextController) {
 		self.stars = existingStars
 		self.navigationContext = navigationContext
+		self.databaseStars = (try? dataStore.fetchArrivalStars()) ?? []
 	}
 	
 	public func createNew() {
 		self.navigationContext.show(view: .newSTAR)
+	}
+	
+	public func starSelected(id: String) {
+		guard let star = self.databaseStars.first(where: { $0.id == id }) else { return }
+		self.stars.append(star)
 	}
 }
 
@@ -37,7 +45,16 @@ public struct AvailableSTARsView: View {
 				}
 			}
 		} titleAccessoryView: {
-			Button(action: { self.viewModel.createNew() }, label: { Text("Create") })
+			HStack {
+				Menu("Add") {
+					VStack {
+						ForEach(self.viewModel.databaseStars) { star in
+							Button(action: { self.viewModel.starSelected(id: star.id) }, label: { Text("\(star.name)") })
+						}
+					}
+				}
+				Button(action: { self.viewModel.createNew() }, label: { Text("Create") })
+			}
 		}
 	}
 }

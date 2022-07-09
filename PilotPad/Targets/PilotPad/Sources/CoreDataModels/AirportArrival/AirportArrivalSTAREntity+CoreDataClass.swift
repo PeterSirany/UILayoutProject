@@ -15,10 +15,12 @@ public class AirportArrivalSTAREntity: NSManagedObject {
 
 	public func toModel() -> AirportArrivalStar? {
 		guard let name = self.name,
+					let id = self.id,
 					let descentGradient = self.descentGradient?.toModel() else { return nil }
 		let waypoints = self.waypoints?.compactMap { ($0 as? WaypointEntity)?.toModel() }
 		
 		return .init(
+			id: id,
 			name: name,
 			initialAltitude: self.initialAltitude,
 			waypoints: waypoints ?? [],
@@ -30,13 +32,17 @@ public class AirportArrivalSTAREntity: NSManagedObject {
 extension AirportArrivalSTAREntity {
 	func save(arrivalStar: AirportArrivalStar, context: NSManagedObjectContext) throws {
 		do {
+			self.id = arrivalStar.id
 			self.name = arrivalStar.name
 			self.initialAltitude = arrivalStar.initialAltitude
-			try arrivalStar.waypoints.forEach { waypoint in
-				let wEntity = WaypointEntity(context: context)
-				try wEntity.save(waypoint: waypoint, context: context)
-				self.addToWaypoints(wEntity)
-			}
+			
+			let request = WaypointEntity.fetchRequest()
+			var results = Set(try context.fetch(request))
+			results = results.filter({ entity in
+				return arrivalStar.waypoints.contains(where: { $0.id == entity.id })
+			})
+			self.addToWaypoints(NSSet(set: results))
+
 			let gradient = ClimbGradientEntity(context: context)
 			try gradient.save(climbGradient: arrivalStar.descentGradient, context: context)
 			self.descentGradient = gradient

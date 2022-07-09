@@ -16,11 +16,9 @@ public struct STARItemCellView: View {
 	
 	public var body: some View {
 		HStack(spacing: Constants.itemCellSpacing) {
-			Text("Name")
+			Text(star.name.uppercased())
 				.cellLabel()
-			Text("Course")
-				.cellLabel()
-			Text("Initial Altitude")
+			Text(Formatter.lengthFormatter.string(from: NSNumber(value: star.initialAltitude)) ?? "")
 				.cellLabel()
 			Spacer()
 		}.borderedCell()

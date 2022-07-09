@@ -39,6 +39,7 @@ public class DataStoreImpl: DataStore {
 			return
 		}
 		
+		entity.setValue(waypoint.id, forKey: WaypointEntity.Keys.id)
 		headingEntity.setValue(waypoint.variation?.value, forKey: HeadingEntity.Keys.value)
 		headingEntity.setValue(waypoint.variation?.variation?.rawValue, forKey:  HeadingEntity.Keys.degreeStyle)
 		entity.setValue(headingEntity, forKey: WaypointEntity.Keys.variation)

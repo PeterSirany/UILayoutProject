@@ -9,13 +9,14 @@
 import Foundation
 
 public class AirportArrivalStar: Viewable {
-	public init(name: String, initialAltitude: Double, waypoints: [Waypoint], descentGradient: ClimbGradient) {
+	public init(id: String? = nil, name: String, initialAltitude: Double, waypoints: [Waypoint], descentGradient: ClimbGradient) {
+		self.id = id ?? UUID().uuidString
 		self.name = name
 		self.initialAltitude = initialAltitude
 		self.waypoints = waypoints
 		self.descentGradient = descentGradient
 	}
-	
+	public let id: String
 	public let name: String
 	public let initialAltitude: Double
 	public let waypoints: [Waypoint]

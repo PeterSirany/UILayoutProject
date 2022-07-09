@@ -14,15 +14,21 @@ import ViewModels
 
 public class AvailableSIDsViewModel: ObservableObject {
 	@Published public var sids: [AirportDepartureSid]
+	public var databaseSids: [AirportDepartureSid]
 	private let navigationContext: NavigationContextController
 	
-	public init(existingSids: [AirportDepartureSid], navigationContext: NavigationContextController) {
+	public init(existingSids: [AirportDepartureSid], dataStore: DataStore, navigationContext: NavigationContextController) {
 		self.sids = existingSids
 		self.navigationContext = navigationContext
+		self.databaseSids = (try? dataStore.fetchDepartureSids()) ?? []
 	}
 	
 	public func createNew() {
 		self.navigationContext.show(view: .newSID)
+	}
+	
+	public func sidSelected(id: String) {
+		
 	}
 }
 
@@ -36,7 +42,16 @@ public struct AvailableSIDsView: View {
 				}
 			}
 		} titleAccessoryView: {
-			Button(action: { self.viewModel.createNew() }, label: { Text("Create") })
+			HStack {
+				Menu("Add") {
+					VStack {
+						ForEach(self.viewModel.databaseSids) { star in
+							Button(action: {  }, label: { Text("\(star.name)") })
+						}
+					}
+				}
+				Button(action: { self.viewModel.createNew() }, label: { Text("Create") })
+			}
 		}
 	}
 }

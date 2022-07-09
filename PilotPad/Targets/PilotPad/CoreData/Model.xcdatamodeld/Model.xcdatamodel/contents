@@ -37,12 +37,14 @@
         <attribute name="weatherRadarSystem" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <entity name="AirportArrivalSTAREntity" representedClassName="AirportArrivalSTAREntity" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="initialAltitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="descentGradient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClimbGradientEntity"/>
         <relationship name="waypoints" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WaypointEntity"/>
     </entity>
     <entity name="AirportDepartureSIDEntity" representedClassName="AirportDepartureSIDEntity" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="initialRunwayHeading" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HeadingEntity"/>
         <relationship name="requiredClimbGradient" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ClimbGradientEntity"/>
@@ -96,6 +98,7 @@
     <entity name="WaypointEntity" representedClassName="WaypointEntity" syncable="YES">
         <attribute name="altitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="coordinateString" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="speed" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="type" attributeType="String"/>
@@ -103,8 +106,8 @@
     </entity>
     <elements>
         <element name="AircraftEntity" positionX="-3094.015625" positionY="435.66796875" width="128" height="553"/>
-        <element name="AirportArrivalSTAREntity" positionX="-2350.0078125" positionY="448.7734375" width="174.1328125" height="103"/>
-        <element name="AirportDepartureSIDEntity" positionX="-2600.1484375" positionY="308.578125" width="178.6015625" height="103"/>
+        <element name="AirportArrivalSTAREntity" positionX="-2350.0078125" positionY="448.7734375" width="174.1328125" height="104"/>
+        <element name="AirportDepartureSIDEntity" positionX="-2600.1484375" positionY="308.578125" width="178.6015625" height="104"/>
         <element name="AirportEntity" positionX="-2840.99609375" positionY="770.2734375" width="128" height="148"/>
         <element name="AirportHold" positionX="-2364.3515625" positionY="669.0078125" width="180.359375" height="163"/>
         <element name="AirportRunwayEntity" positionX="-2760.796875" positionY="356.390625" width="128" height="148"/>
@@ -112,6 +115,6 @@
         <element name="DisplacedThresholdEntity" positionX="-2547.27734375" positionY="509.015625" width="165.078125" height="59"/>
         <element name="HeadingEntity" positionX="-1746.30859375" positionY="267.84765625" width="128" height="73"/>
         <element name="RunwayIntersectionEntity" positionX="-2610.94921875" positionY="628.84765625" width="168.91015625" height="88"/>
-        <element name="WaypointEntity" positionX="-1948.30859375" positionY="508.87109375" width="128" height="119"/>
+        <element name="WaypointEntity" positionX="-1948.30859375" positionY="508.87109375" width="128" height="134"/>
     </elements>
 </model>

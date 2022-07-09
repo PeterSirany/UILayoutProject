@@ -17,7 +17,8 @@ extension DataStoreImpl {
 	}
 	
 	public func save(arrivalStar: AirportArrivalStar) throws {
-		
+		let entity = AirportArrivalSTAREntity(context: self.managedObjectContext)
+		try entity.save(arrivalStar: arrivalStar, context: managedObjectContext)
 	}
 	
 	public func save(runway: AirportRunway) throws {

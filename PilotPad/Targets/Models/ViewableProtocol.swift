@@ -13,10 +13,6 @@ public protocol Viewable: CustomStringConvertible, Identifiable, Hashable {
 }
 
 extension Viewable {
-	public var id: UUID {
-		return .init()
-	}
-	
 	public var description: String {
 		return String(describing: Self.self)
 	}

@@ -17,26 +17,40 @@ public class CreateNewSTARViewModel: ObservableObject {
 	private let navigationContext: NavigationContextController
 	
 	@Published public var procedureName: String?
+	@Published public var altitude: Double?
 	@Published public var climbGradientValue: Double?
 	@Published public var climbGradientMeasurementType: MeasurementType = .meters
 	@Published public var headingValue: String?
 	
+	public let availableWaypointsViewModel: AvailableWaypointsViewModel
+	
 	public init(dataStore: DataStore, navigationContext: NavigationContextController) {
 		self.dataStore = dataStore
 		self.navigationContext = navigationContext
+		availableWaypointsViewModel = .init(waypointType: .star, waypoints: [],
+																				dataStore: self.dataStore, navigationContext: self.navigationContext)
 	}
 	
 	public func save() {
+		guard let name = self.procedureName,
+					let climbValue = self.climbGradientValue,
+					let altitude = self.altitude  else { return }
 		
+		let star = AirportArrivalStar(
+			name: name,
+			initialAltitude: altitude,
+			waypoints: availableWaypointsViewModel.selectedWaypoints,
+			descentGradient: .init(value: climbValue, measurementType: climbGradientMeasurementType))
+		do {
+			try self.dataStore.save(arrivalStar: star)
+			print("Star saved")
+		} catch {
+			print("Error saving STAR: \(error)")
+		}
 	}
 	
 	public func back() {
 		self.navigationContext.back()
-	}
-	
-	public var availableWaypointsViewModel: AvailableWaypointsViewModel {
-		return .init(waypointType: .star, waypoints: [.init(name: "AKLx", coordinateRepresentation: "", variation: .init(value: "", variation: nil), type: .star, altitude: nil, speed: nil)],
-								 dataStore: self.dataStore, navigationContext: self.navigationContext)
 	}
 }
 
@@ -53,10 +67,15 @@ public struct CreateNewSTARView: View {
 	@ViewBuilder
 	func getSTARMetadataSection() -> some View {
 		SectionContainer(sectionTitle: "STAR Information") {
-			HStack {
-				SimpleTextField(text: self.$viewModel.procedureName, title: "Name", placeholder: "CASTA ONE")
-				SimpleDecimalTextField(value: self.$viewModel.climbGradientValue, title: "Required Climb Gradient", placeholder: "350")
-				MeasurementTypeSelectorView(selectedMeasurement: self.$viewModel.climbGradientMeasurementType, selectionOptions: [.meters, .feet, .knots])
+			VStack(alignment: .leading) {
+				HStack {
+					SimpleTextField(text: self.$viewModel.procedureName, title: "Name", placeholder: "CASTA ONE")
+					SimpleDecimalTextField(value: self.$viewModel.climbGradientValue, title: "Descent Gradient", placeholder: "-350")
+					MeasurementTypeSelectorView(selectedMeasurement: self.$viewModel.climbGradientMeasurementType, selectionOptions: [.meters, .feet, .knots])
+				}
+				HStack {
+					SimpleDecimalTextField(value: self.$viewModel.altitude, title: "Initial Altitude", placeholder: "5000")
+				}
 			}
 		} titleAccessoryView: {
 			HStack {

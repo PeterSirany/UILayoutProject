@@ -16,6 +16,7 @@ public enum WaypointType: String, Hashable {
 }
 
 public class Waypoint: Viewable {
+	public let id: String
 	public let name: String
 	public let coordinateRepresentation: String
 	public let variation: Heading?
@@ -23,7 +24,8 @@ public class Waypoint: Viewable {
 	public let altitude: Double?
 	public let speed: Double?
 	
-	public init(name: String, coordinateRepresentation: String, variation: Heading?, type: WaypointType, altitude: Double?, speed: Double?) {
+	public init(id: String? = nil, name: String, coordinateRepresentation: String, variation: Heading?, type: WaypointType, altitude: Double?, speed: Double?) {
+		self.id = id ?? UUID().uuidString
 		self.name = name
 		self.coordinateRepresentation = coordinateRepresentation
 		self.variation = variation
@@ -33,6 +35,7 @@ public class Waypoint: Viewable {
 	}
 	
 	public func hash(into hasher: inout Hasher) {
+		hasher.combine(id)
 		hasher.combine(name)
 		hasher.combine(coordinateRepresentation)
 		hasher.combine(variation)

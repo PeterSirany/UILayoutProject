@@ -39,13 +39,13 @@ public class CreateNewAirportRunwayViewModel: ObservableObject {
 	public var availableSidsViewModel: AvailableSIDsViewModel {
 		return .init(existingSids: [
 			.init(name: "CASTA ONE", waypoints: [], climbGradient: .init(value: 112, measurementType: .feet), initialRunwayHeading: .init(value: "120", variation: nil))
-		], navigationContext: self.navigationContext)
+		], dataStore: self.dataStore, navigationContext: self.navigationContext)
 	}
 	
 	public var availableStarsViewModel: AvailableSTARsViewModel {
 		return .init(existingStars: [
 			.init(name: "FIDEL", initialAltitude: 10000, waypoints: [], descentGradient: .init(value: -120, measurementType: .knots))
-		], navigationContext: self.navigationContext)
+		], dataStore: self.dataStore, navigationContext: self.navigationContext)
 	}
 }
 

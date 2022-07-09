@@ -24,6 +24,8 @@ public class CreateNewWaypointViewModel: ObservableObject {
 	@Published public var speed: Double?
 	@Published public var isHoldingWaypoint: Bool = false
 	
+	public var didCreateNewWaypoint: ((Waypoint) -> Void)?
+	
 	public init(waypointType: WaypointType, dataStore: DataStore, navigationContext: NavigationContextController) {
 		self.dataStore = dataStore
 		self.navigationContext = navigationContext
@@ -42,7 +44,8 @@ public class CreateNewWaypointViewModel: ObservableObject {
 			speed: self.speed)
 		do {
 			try self.dataStore.save(waypoint: waypoint)
-			print("Saved")
+			self.didCreateNewWaypoint?(waypoint)
+			self.navigationContext.back()
 		} catch let error {
 			print("Unable to save Waypoint: \(error)")
 		}

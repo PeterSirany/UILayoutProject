@@ -16,11 +16,11 @@ public struct WaypointItemCellView: View {
 	
 	public var body: some View {
 		HStack(spacing: Constants.itemCellSpacing) {
-			Text("Waypoint Name")
+			Text(waypoint.name.uppercased())
 				.cellLabel()
-			Text("Variation")
+			Text(waypoint.variation?.value ?? "N/A")
 				.cellLabel()
-			Text("Coordinate")
+			Text(waypoint.coordinateRepresentation)
 				.cellLabel()
 			Spacer()
 		}.borderedCell()
