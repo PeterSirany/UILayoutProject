@@ -16,4 +16,6 @@ public protocol DataStore: AnyObject {
 	func update(aircraft: Aircraft) throws
 	func fetchAirplane() throws -> [Aircraft]
 	func fetchAirports() throws -> [Airport]
+	func fetchAllWaypoints() throws -> [Waypoint]
+	func fetchHeadings() throws -> [Heading]
 }

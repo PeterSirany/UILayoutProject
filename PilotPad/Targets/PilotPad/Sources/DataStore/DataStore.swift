@@ -33,12 +33,26 @@ public class DataStoreImpl: DataStore {
 	
 	public func save(waypoint: Waypoint) throws {
 		let context = self.managedObjectContext
-		guard let entity = NSEntityDescription.insertNewObject(forEntityName: WaypointEntity.Keys.entityName, into: context) as? WaypointEntity else {
+		guard let entity = NSEntityDescription.insertNewObject(forEntityName: WaypointEntity.Keys.entityName, into: context) as? WaypointEntity,
+		let headingEntity = NSEntityDescription.insertNewObject(forEntityName: HeadingEntity.Keys.entityName, into: context) as? HeadingEntity else {
 			print("Unable to insert New Waypoint Entity Object")
 			return
 		}
 		
-		try entity.save(waypoint: waypoint, context: context)
+		headingEntity.setValue(waypoint.variation?.value, forKey: HeadingEntity.Keys.value)
+		headingEntity.setValue(waypoint.variation?.variation?.rawValue, forKey:  HeadingEntity.Keys.degreeStyle)
+		entity.setValue(headingEntity, forKey: WaypointEntity.Keys.variation)
+		entity.setValue(waypoint.altitude, forKey: WaypointEntity.Keys.altitude)
+		entity.setValue(waypoint.speed, forKey: WaypointEntity.Keys.speed)
+		entity.setValue(waypoint.coordinateRepresentation, forKey: WaypointEntity.Keys.coordinateString)
+		entity.setValue(waypoint.name, forKey: WaypointEntity.Keys.name)
+		entity.setValue(waypoint.type.rawValue, forKey: WaypointEntity.Keys.type)
+		do {
+			try context.save()
+			print("foo saved foo")
+		} catch {
+			print("Unable to svae")
+		}
 	}
 	
 	public func save(aircraft: Aircraft) throws {
@@ -159,6 +173,26 @@ public class DataStoreImpl: DataStore {
 //		do {
 //			try self.managedObjectContext.save()
 //		}
+	}
+	
+	public func fetchAllWaypoints() throws -> [Waypoint] {
+		do {
+			let request = WaypointEntity.fetchRequest()
+			let results = try self.managedObjectContext.fetch(request)
+			print("Results Count: 1 \(results.count)")
+			let waypoints = results.compactMap { $0.toModel() }
+			return waypoints
+		}
+	}
+	
+	public func fetchHeadings() throws -> [Heading] {
+		do {
+			let request = HeadingEntity.fetchRequest()
+			let results = try self.managedObjectContext.fetch(request)
+			print("Results Count: 2 \(results.count)")
+			let models = results.compactMap { $0.toModel() }
+			return models
+		}
 	}
 	
 	public func fetchAirplane() throws -> [Aircraft] {

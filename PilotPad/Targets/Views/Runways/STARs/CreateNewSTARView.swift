@@ -35,7 +35,8 @@ public class CreateNewSTARViewModel: ObservableObject {
 	}
 	
 	public var availableWaypointsViewModel: AvailableWaypointsViewModel {
-		return .init(waypointType: .star, waypoints: [.init(name: "AKLx", coordinateRepresentation: "", variation: .init(value: "", variation: nil), type: .star, altitude: nil, speed: nil)], navigationContext: self.navigationContext)
+		return .init(waypointType: .star, waypoints: [.init(name: "AKLx", coordinateRepresentation: "", variation: .init(value: "", variation: nil), type: .star, altitude: nil, speed: nil)],
+								 dataStore: self.dataStore, navigationContext: self.navigationContext)
 	}
 }
 

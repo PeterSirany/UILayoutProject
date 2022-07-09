@@ -94,10 +94,10 @@
         <attribute name="remainingDistance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <entity name="WaypointEntity" representedClassName="WaypointEntity" syncable="YES">
-        <attribute name="altitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="altitude" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="coordinateString" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
-        <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="speed" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="type" attributeType="String"/>
         <relationship name="variation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HeadingEntity"/>
     </entity>

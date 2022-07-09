@@ -35,7 +35,8 @@ public class CreateNewSIDViewModel: ObservableObject {
 	}
 	
 	public var availableWaypointsViewModel: AvailableWaypointsViewModel {
-		return .init(waypointType: .sid, waypoints: [.init(name: "AKLx", coordinateRepresentation: "", variation: .init(value: "", variation: nil), type: .sid, altitude: nil, speed: nil)], navigationContext: self.navigationContext)
+		return .init(waypointType: .sid, waypoints: [.init(name: "AKLx", coordinateRepresentation: "", variation: .init(value: "", variation: nil), type: .sid, altitude: nil, speed: nil)],
+								 dataStore: self.dataStore, navigationContext: self.navigationContext)
 	}
 }
 

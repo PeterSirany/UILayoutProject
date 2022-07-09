@@ -17,11 +17,17 @@ public class AvailableWaypointsViewModel: ObservableObject {
 	@Published var waypoints: [Waypoint]
 	private let navigationContext: NavigationContextController
 	private let waypointType: WaypointType
+	private let dataStore: DataStore
 	
-	public init(waypointType: WaypointType, waypoints: [Waypoint], navigationContext: NavigationContextController) {
-		self.waypoints = waypoints
-		self.navigationContext = navigationContext
+	public init(waypointType: WaypointType, waypoints: [Waypoint], dataStore: DataStore, navigationContext: NavigationContextController) {
 		self.waypointType = waypointType
+		self.waypoints = waypoints
+		self.dataStore = dataStore
+		self.navigationContext = navigationContext
+		let allPoints = try? dataStore.fetchAllWaypoints()
+		print("Waypoint count: \(allPoints?.count ?? -1)")
+		let headings = try? dataStore.fetchHeadings()
+		print("Headings count: \(headings?.count ?? -1)")
 	}
 	
 	public func createNewWaypoint() {

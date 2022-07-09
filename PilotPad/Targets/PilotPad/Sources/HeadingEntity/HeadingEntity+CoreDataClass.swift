@@ -14,6 +14,7 @@ import Models
 public class HeadingEntity: NSManagedObject {
 
 	func toModel() -> Heading? {
+		print(self)
 		let variation = self.degreeStyle == nil ? nil : HeadingVariation(rawValue: self.degreeStyle!)
 		guard let value = self.value else { return nil }
 		return .init(
