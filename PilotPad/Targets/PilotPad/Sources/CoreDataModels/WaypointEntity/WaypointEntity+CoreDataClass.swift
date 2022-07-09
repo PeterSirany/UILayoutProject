@@ -31,3 +31,21 @@ public class WaypointEntity: NSManagedObject {
 		)
 	}
 }
+
+extension WaypointEntity {
+	func save(waypoint: Waypoint, context: NSManagedObjectContext) throws {
+		self.name = waypoint.name
+		self.coordinateString = waypoint.coordinateRepresentation
+		self.type = waypoint.type.rawValue
+		// use setValue:forKey here since speed and altitude properties are optional
+		self.setValue(waypoint.speed, forKey: Keys.speed)
+		self.setValue(waypoint.altitude, forKey: Keys.altitude)
+		let variationEntity = HeadingEntity(context: context)
+		if let heading = waypoint.variation {
+			try variationEntity.save(heading: heading, context: context)
+			self.variation = variationEntity
+		}		
+		
+		try context.save()
+	}
+}

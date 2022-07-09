@@ -1,8 +1,8 @@
 //
-//  CreateNewSIDView.swift
+//  CreateNewSTARView.swift
 //  Views
 //
-//  Created by Richard Poutier on 6/14/22.
+//  Created by Richard Poutier on 7/8/22.
 //  Copyright © 2022 Peter.Sirany. All rights reserved.
 //
 
@@ -12,7 +12,7 @@ import Models
 import Common
 import SwiftUI
 
-public class CreateNewSIDViewModel: ObservableObject {
+public class CreateNewSTARViewModel: ObservableObject {
 	private let dataStore: DataStore
 	private let navigationContext: NavigationContextController
 	
@@ -35,23 +35,23 @@ public class CreateNewSIDViewModel: ObservableObject {
 	}
 	
 	public var availableWaypointsViewModel: AvailableWaypointsViewModel {
-		return .init(waypointType: .sid, waypoints: [.init(name: "AKLx", coordinateRepresentation: "", variation: .init(value: "", variation: nil), type: .sid, altitude: nil, speed: nil)], navigationContext: self.navigationContext)
+		return .init(waypointType: .star, waypoints: [.init(name: "AKLx", coordinateRepresentation: "", variation: .init(value: "", variation: nil), type: .star, altitude: nil, speed: nil)], navigationContext: self.navigationContext)
 	}
 }
 
 
-public struct CreateNewSIDView: View {
-	@ObservedObject public var viewModel: CreateNewSIDViewModel
+public struct CreateNewSTARView: View {
+	@ObservedObject public var viewModel: CreateNewSTARViewModel
 	public var body: some View {
 		ScrollView {
-			getSIDMetadataSection()
+			getSTARMetadataSection()
 			AvailableWaypointsView(viewModel: self.viewModel.availableWaypointsViewModel)
 		}
 	}
 	
 	@ViewBuilder
-	func getSIDMetadataSection() -> some View {
-		SectionContainer(sectionTitle: "SID Information") {
+	func getSTARMetadataSection() -> some View {
+		SectionContainer(sectionTitle: "STAR Information") {
 			HStack {
 				SimpleTextField(text: self.$viewModel.procedureName, title: "Name", placeholder: "CASTA ONE")
 				SimpleDecimalTextField(value: self.$viewModel.climbGradientValue, title: "Required Climb Gradient", placeholder: "350")

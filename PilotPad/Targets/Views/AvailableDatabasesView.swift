@@ -22,11 +22,10 @@ struct AvailableDatabasesView: View {
 					contentView: {
 						VStack {
 							HStack {
-								Spacer()
+								
 								self.buildButton(ofType: .airports)
-								Spacer()
+								
 								self.buildButton(ofType: .aircraft)
-								Spacer()
 								self.buildButton(ofType: .waypoints)
 								Spacer()
 							}.padding(.horizontal)

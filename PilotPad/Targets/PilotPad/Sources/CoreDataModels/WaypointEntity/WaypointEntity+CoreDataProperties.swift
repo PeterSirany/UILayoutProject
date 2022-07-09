@@ -24,3 +24,15 @@ extension WaypointEntity {
     @NSManaged public var variation: HeadingEntity?
 
 }
+
+extension WaypointEntity {
+	public struct Keys {
+		static let entityName = "WaypointEntity"
+		static let altitude = "altitude"
+		static let coordinateString = "coordinateString"
+		static let name = "name"
+		static let speed = "speed"
+		static let type = "type"
+		static let variation = "variation"
+	}
+}

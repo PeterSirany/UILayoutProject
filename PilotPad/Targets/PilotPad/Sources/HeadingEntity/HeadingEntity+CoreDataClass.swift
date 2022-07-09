@@ -22,3 +22,12 @@ public class HeadingEntity: NSManagedObject {
 		)
 	}
 }
+
+extension HeadingEntity {
+	func save(heading: Heading, context: NSManagedObjectContext) throws {
+		self.value = heading.value
+		self.degreeStyle = heading.variation?.rawValue
+		
+		try context.save()
+	}
+}

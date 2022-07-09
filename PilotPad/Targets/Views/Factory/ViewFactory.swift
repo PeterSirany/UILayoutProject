@@ -39,14 +39,25 @@ public class ViewFactory {
 			self.newRunway()
 		case .newSID:
 			self.newSID()
+		case .newWaypoint(let type):
+			self.newWaypoint(type)
+		case .newSTAR:
+			self.newSTAR()
 		}
 	}
 	
 	@ViewBuilder
+	func newSTAR() -> some View {
+		CreateNewSTARView(viewModel: .init(dataStore: self.dataStore, navigationContext: self.navigationContext))
+	}
+	@ViewBuilder
+	func newWaypoint(_ waypointType: WaypointType) -> some View {
+		CreateNewWaypointView(viewModel: .init(waypointType: waypointType, dataStore: self.dataStore, navigationContext: self.navigationContext))
+	}
+	@ViewBuilder
 	func newSID() -> some View {
 		CreateNewSIDView(viewModel: .init(dataStore: self.dataStore, navigationContext: self.navigationContext))
 	}
-	
 	@ViewBuilder
 	func newRunway() -> some View {
 		CreateNewRunwayView(viewModel: .init(dataStore: self.dataStore, navigationContext: self.navigationContext))
@@ -67,14 +78,12 @@ public class ViewFactory {
 	func availableAirportsList() -> some View {
 		AvailableAirportsView(viewModel: .init(dataStore: self.dataStore, navigationContext: self.navigationContext))
 	}
-	
 	@ViewBuilder
 	func aircraft(_ aircraft: Aircraft, newAircraft: Bool) -> some View {
 		CreateNewAircraftView(
 			viewModel: .init(aircraft: aircraft, newAircraft: newAircraft, dataStore: self.dataStore, navigationContext: navigationContext)
 		)
 	}
-	
 	@ViewBuilder
 	func mainMenu() -> some View {
 		MainMenuView(navigationContext: navigationContext)

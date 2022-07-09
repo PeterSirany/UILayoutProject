@@ -10,20 +10,6 @@ import Foundation
 import CoreData
 import Models
 
-public class AirportArrivalStar {
-	public init(name: String, initialAltitude: Double, waypoints: [Waypoint], descentGradient: ClimbGradient) {
-		self.name = name
-		self.initialAltitude = initialAltitude
-		self.waypoints = waypoints
-		self.descentGradient = descentGradient
-	}
-	
-	public let name: String
-	public let initialAltitude: Double
-	public let waypoints: [Waypoint]
-	public let descentGradient: ClimbGradient
-}
-
 @objc(AirportArrivalSTAREntity)
 public class AirportArrivalSTAREntity: NSManagedObject {
 
@@ -38,5 +24,24 @@ public class AirportArrivalSTAREntity: NSManagedObject {
 			waypoints: waypoints ?? [],
 			descentGradient: descentGradient
 		)
+	}
+}
+
+extension AirportArrivalSTAREntity {
+	func save(arrivalStar: AirportArrivalStar, context: NSManagedObjectContext) throws {
+		do {
+			self.name = arrivalStar.name
+			self.initialAltitude = arrivalStar.initialAltitude
+			try arrivalStar.waypoints.forEach { waypoint in
+				let wEntity = WaypointEntity(context: context)
+				try wEntity.save(waypoint: waypoint, context: context)
+				self.addToWaypoints(wEntity)
+			}
+			let gradient = ClimbGradientEntity(context: context)
+			try gradient.save(climbGradient: arrivalStar.descentGradient, context: context)
+			self.descentGradient = gradient
+			
+			try context.save()
+		}
 	}
 }

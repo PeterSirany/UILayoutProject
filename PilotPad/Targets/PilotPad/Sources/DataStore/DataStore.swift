@@ -13,7 +13,7 @@ import ViewModels
 
 public class DataStoreImpl: DataStore {
 	 
-	private let managedObjectContext : NSManagedObjectContext
+	internal let managedObjectContext : NSManagedObjectContext
 	
 	public init(managedObjectContext : NSManagedObjectContext) {
 		self.managedObjectContext = managedObjectContext
@@ -31,9 +31,19 @@ public class DataStoreImpl: DataStore {
 		}
 	}
 	
+	public func save(waypoint: Waypoint) throws {
+		let context = self.managedObjectContext
+		guard let entity = NSEntityDescription.insertNewObject(forEntityName: WaypointEntity.Keys.entityName, into: context) as? WaypointEntity else {
+			print("Unable to insert New Waypoint Entity Object")
+			return
+		}
+		
+		try entity.save(waypoint: waypoint, context: context)
+	}
+	
 	public func save(aircraft: Aircraft) throws {
 		let managedContext = self.managedObjectContext
-		guard let aircraftEntity = NSEntityDescription.insertNewObject(forEntityName: "AircraftEntity", into: managedContext) as? AircraftEntity else {
+		guard let aircraftEntity = NSEntityDescription.insertNewObject(forEntityName: AircraftEntity.Keys.entityName, into: managedContext) as? AircraftEntity else {
 			print("couldn't create the \(AircraftEntity.Keys.entityName) entity")
 			return
 		}

@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import Models
 
 
 extension HeadingEntity {
@@ -19,4 +20,9 @@ extension HeadingEntity {
     @NSManaged public var degreeStyle: String?
     @NSManaged public var value: String?
 
+	public struct Keys {
+		static let entityName = "HeadingEntity"
+		static let degreeStyle = "degreeStyle"
+		static let value = "value"
+	}
 }

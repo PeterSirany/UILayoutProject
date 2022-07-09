@@ -16,14 +16,16 @@ import ViewModels
 public class AvailableWaypointsViewModel: ObservableObject {
 	@Published var waypoints: [Waypoint]
 	private let navigationContext: NavigationContextController
+	private let waypointType: WaypointType
 	
-	public init(waypoints: [Waypoint], navigationContext: NavigationContextController) {
+	public init(waypointType: WaypointType, waypoints: [Waypoint], navigationContext: NavigationContextController) {
 		self.waypoints = waypoints
 		self.navigationContext = navigationContext
+		self.waypointType = waypointType
 	}
 	
 	public func createNewWaypoint() {
-		
+		self.navigationContext.show(view: .newWaypoint(type: waypointType))
 	}
 }
 

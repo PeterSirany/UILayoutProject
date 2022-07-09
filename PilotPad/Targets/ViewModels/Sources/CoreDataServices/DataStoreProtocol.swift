@@ -12,6 +12,7 @@ import Models
 public protocol DataStore: AnyObject {
 	func save(aircraft: Aircraft) throws
 	func save(airport: Airport) throws
+	func save(waypoint: Waypoint) throws
 	func update(aircraft: Aircraft) throws
 	func fetchAirplane() throws -> [Aircraft]
 	func fetchAirports() throws -> [Airport]

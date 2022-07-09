@@ -99,7 +99,7 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="speed" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="type" attributeType="String"/>
-        <relationship name="variation" maxCount="1" deletionRule="Nullify" destinationEntity="HeadingEntity"/>
+        <relationship name="variation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HeadingEntity"/>
     </entity>
     <elements>
         <element name="AircraftEntity" positionX="-3094.015625" positionY="435.66796875" width="128" height="553"/>
@@ -112,6 +112,6 @@
         <element name="DisplacedThresholdEntity" positionX="-2547.27734375" positionY="509.015625" width="165.078125" height="59"/>
         <element name="HeadingEntity" positionX="-1746.30859375" positionY="267.84765625" width="128" height="73"/>
         <element name="RunwayIntersectionEntity" positionX="-2610.94921875" positionY="628.84765625" width="168.91015625" height="88"/>
-        <element name="WaypointEntity" positionX="-1948.30859375" positionY="508.87109375" width="128" height="133"/>
+        <element name="WaypointEntity" positionX="-1948.30859375" positionY="508.87109375" width="128" height="119"/>
     </elements>
 </model>

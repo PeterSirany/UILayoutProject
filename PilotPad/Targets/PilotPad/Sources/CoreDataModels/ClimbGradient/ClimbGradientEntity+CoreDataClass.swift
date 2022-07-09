@@ -22,3 +22,12 @@ public class ClimbGradientEntity: NSManagedObject {
 		)
 	}
 }
+
+extension ClimbGradientEntity {
+	func save(climbGradient: ClimbGradient, context: NSManagedObjectContext) throws {
+		self.value = climbGradient.value
+		self.measurementType = climbGradient.measurementType.rawValue
+		
+		try context.save()
+	}
+}

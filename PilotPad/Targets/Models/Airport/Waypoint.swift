@@ -18,12 +18,12 @@ public enum WaypointType: String, Hashable {
 public class Waypoint: Viewable {
 	public let name: String
 	public let coordinateRepresentation: String
-	public let variation: Heading
+	public let variation: Heading?
 	public let type: WaypointType
 	public let altitude: Double?
 	public let speed: Double?
 	
-	public init(name: String, coordinateRepresentation: String, variation: Heading, type: WaypointType, altitude: Double?, speed: Double?) {
+	public init(name: String, coordinateRepresentation: String, variation: Heading?, type: WaypointType, altitude: Double?, speed: Double?) {
 		self.name = name
 		self.coordinateRepresentation = coordinateRepresentation
 		self.variation = variation

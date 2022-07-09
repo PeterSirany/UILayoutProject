@@ -21,6 +21,14 @@ extension AirportArrivalSTAREntity {
     @NSManaged public var descentGradient: ClimbGradientEntity?
     @NSManaged public var waypoints: NSSet?
 
+	public struct Keys {
+		static let entityName = "AirportArrivalSTAREntity"
+		static let initialAltitude = "initialAltitude"
+		static let name = "name"
+		static let descentGradient = "descentGradient"
+		static let waypoints = "waypoints"
+	}
+	
 }
 
 // MARK: Generated accessors for waypoints

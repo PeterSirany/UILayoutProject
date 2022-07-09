@@ -18,6 +18,8 @@ public enum ViewFactoryView: Identifiable, Hashable {
 	case newRunway
 	case mainMenu
 	case newSID
+	case newWaypoint(type: WaypointType)
+	case newSTAR
 	
 	public var id: UUID {
 		return UUID()

@@ -12,11 +12,13 @@ import Common
 struct DatabaseItemView: View {
 	var title: String
     var body: some View {
-			Text(title)
-				.foregroundColor(.preliminaryTextColor)
-				.padding(.vertical, 15)
-				.setWidth(217)
-				.addRoundedCornerStrokeBorder(color: Color.preliminaryTextColor)
+			HStack {
+				Image("database").resizable().frame(width: 27, height: 27, alignment: .center).foregroundColor(.white)
+				Text(title)
+					.foregroundColor(.preliminaryTextColor)
+			}.setWidth(217)
+				.borderedCell()
+				
     }
 }
 

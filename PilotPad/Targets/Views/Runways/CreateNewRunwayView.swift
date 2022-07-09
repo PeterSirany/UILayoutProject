@@ -41,6 +41,12 @@ public class CreateNewAirportRunwayViewModel: ObservableObject {
 			.init(name: "CASTA ONE", waypoints: [], climbGradient: .init(value: 112, measurementType: .feet), initialRunwayHeading: .init(value: "120", variation: nil))
 		], navigationContext: self.navigationContext)
 	}
+	
+	public var availableStarsViewModel: AvailableSTARsViewModel {
+		return .init(existingStars: [
+			.init(name: "FIDEL", initialAltitude: 10000, waypoints: [], descentGradient: .init(value: -120, measurementType: .knots))
+		], navigationContext: self.navigationContext)
+	}
 }
 
 
@@ -50,7 +56,11 @@ public struct CreateNewRunwayView: View {
 	public var body: some View {
 		ScrollView {
 			buildMetadataView()
-			AvailableSIDsView(viewModel: self.viewModel.availableSidsViewModel)
+			HStack {
+				AvailableSIDsView(viewModel: self.viewModel.availableSidsViewModel)
+				AvailableSTARsView(viewModel: self.viewModel.availableStarsViewModel)
+			}
+			
 		}
 	}
 	
