@@ -29,11 +29,18 @@ public class CreateNewAirportViewModel: ObservableObject {
 	@Published public var airportVariationValue: String?
 	@Published public var runways: [AirportRunway]
 	
+	public let availableRunwaysViewModel: AvailableRunwaysViewModel
+	
 	public init(dataStore: DataStore, navigationContext: NavigationContextController) {
 		self.dataStore = dataStore
 		self.navController = navigationContext
 		self.airportVariation = .magneticVariation
 		self.runways = []
+		self.availableRunwaysViewModel = AvailableRunwaysViewModel(
+			existingRunways: [],
+			dataStore: dataStore,
+			navigationContext: navigationContext
+		)
 	}
 	
 	func save() {
@@ -76,7 +83,7 @@ public struct CreateNewAirportView: View {
 	public var body: some View {
 		ScrollView {
 			getMetadataInputs()
-			getRunwaysContainerView()
+			AvailableRunwaysView(viewModel: self.viewModel.availableRunwaysViewModel)
 		}
 	}
 	

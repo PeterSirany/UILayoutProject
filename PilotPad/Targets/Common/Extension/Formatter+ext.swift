@@ -63,3 +63,9 @@ public extension Formatter {
 		return formatter
 	}()
 }
+
+extension NumberFormatter {
+	public func string(from double: Double) -> String? {
+		return self.string(from: NSNumber(value: double))
+	}
+}

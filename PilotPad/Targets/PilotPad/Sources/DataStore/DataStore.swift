@@ -214,6 +214,15 @@ public class DataStoreImpl: DataStore {
 			return airports
 		}
 	}
+	
+	public func fetchAirportRunways() throws -> [AirportRunway] {
+		do {
+			let request = AirportRunwayEntity.fetchRequest()
+			let result = try self.managedObjectContext.fetch(request)
+			let runways = result.compactMap { $0.toModel() }
+			return runways
+		}
+	}
 }
 
 

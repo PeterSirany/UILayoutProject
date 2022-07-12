@@ -28,7 +28,8 @@ public class AvailableSIDsViewModel: ObservableObject {
 	}
 	
 	public func sidSelected(id: String) {
-		
+		guard let sid = self.databaseSids.first(where: { $0.id == id }) else { return }
+		self.sids.append(sid)
 	}
 }
 
@@ -45,8 +46,8 @@ public struct AvailableSIDsView: View {
 			HStack {
 				Menu("Add") {
 					VStack {
-						ForEach(self.viewModel.databaseSids) { star in
-							Button(action: {  }, label: { Text("\(star.name)") })
+						ForEach(self.viewModel.databaseSids) { sid in
+							Button(action: { self.viewModel.sidSelected(id: sid.id) }, label: { Text("\(sid.name)") })
 						}
 					}
 				}

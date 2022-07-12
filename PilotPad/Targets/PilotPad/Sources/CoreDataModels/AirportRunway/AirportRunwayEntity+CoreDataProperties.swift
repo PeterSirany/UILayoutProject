@@ -2,7 +2,7 @@
 //  AirportRunwayEntity+CoreDataProperties.swift
 //  
 //
-//  Created by Richard Poutier on 6/18/22.
+//  Created by Richard Poutier on 7/11/22.
 //
 //
 
@@ -19,10 +19,28 @@ extension AirportRunwayEntity {
     @NSManaged public var length: Double
     @NSManaged public var name: String?
     @NSManaged public var touchDownZoneElevation: Double
-    @NSManaged public var displaced_threshold: DisplacedThresholdEntity?
-    @NSManaged public var intersections: NSSet?
     @NSManaged public var departureSIDs: NSSet?
+    @NSManaged public var displaced_threshold: DisplacedThresholdEntity?
     @NSManaged public var heading: HeadingEntity?
+    @NSManaged public var intersections: NSSet?
+    @NSManaged public var arrivalStars: NSSet?
+
+}
+
+// MARK: Generated accessors for departureSIDs
+extension AirportRunwayEntity {
+
+    @objc(addDepartureSIDsObject:)
+    @NSManaged public func addToDepartureSIDs(_ value: AirportDepartureSIDEntity)
+
+    @objc(removeDepartureSIDsObject:)
+    @NSManaged public func removeFromDepartureSIDs(_ value: AirportDepartureSIDEntity)
+
+    @objc(addDepartureSIDs:)
+    @NSManaged public func addToDepartureSIDs(_ values: NSSet)
+
+    @objc(removeDepartureSIDs:)
+    @NSManaged public func removeFromDepartureSIDs(_ values: NSSet)
 
 }
 
@@ -43,19 +61,19 @@ extension AirportRunwayEntity {
 
 }
 
-// MARK: Generated accessors for departureSIDs
+// MARK: Generated accessors for arrivalStars
 extension AirportRunwayEntity {
 
-    @objc(addDepartureSIDsObject:)
-    @NSManaged public func addToDepartureSIDs(_ value: AirportDepartureSIDEntity)
+    @objc(addArrivalStarsObject:)
+    @NSManaged public func addToArrivalStars(_ value: AirportArrivalSTAREntity)
 
-    @objc(removeDepartureSIDsObject:)
-    @NSManaged public func removeFromDepartureSIDs(_ value: AirportDepartureSIDEntity)
+    @objc(removeArrivalStarsObject:)
+    @NSManaged public func removeFromArrivalStars(_ value: AirportArrivalSTAREntity)
 
-    @objc(addDepartureSIDs:)
-    @NSManaged public func addToDepartureSIDs(_ values: NSSet)
+    @objc(addArrivalStars:)
+    @NSManaged public func addToArrivalStars(_ values: NSSet)
 
-    @objc(removeDepartureSIDs:)
-    @NSManaged public func removeFromDepartureSIDs(_ values: NSSet)
+    @objc(removeArrivalStars:)
+    @NSManaged public func removeFromArrivalStars(_ values: NSSet)
 
 }

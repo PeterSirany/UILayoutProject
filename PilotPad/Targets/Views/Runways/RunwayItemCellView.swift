@@ -28,7 +28,7 @@ public struct RunwayItemCellView: View {
 
 struct RunwayItemCellView_Previews: PreviewProvider {
 	static var previews: some View {
-		RunwayItemCellView(runway: .init(name: "12L", length: 4500, touchDownZoneElevation: 124.3, heading: Heading.init(value: "12.0", variation: .magneticVariation), displacedThreshold: .init(value: 112, measurementType: .knots), departureSids: [], intersections: []))
+		RunwayItemCellView(runway: .init(name: "12L", length: 4500, touchDownZoneElevation: 124.3, heading: Heading.init(value: "12.0", variation: .magneticVariation), displacedThreshold: .init(value: 112, measurementType: .knots), departureSids: [], arrivalStars: [], intersections: []))
 			.borderedCell()
 	}
 }

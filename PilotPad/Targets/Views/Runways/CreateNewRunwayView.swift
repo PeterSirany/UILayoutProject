@@ -21,31 +21,42 @@ public class CreateNewAirportRunwayViewModel: ObservableObject {
 	@Published public var heading: String?
 	@Published public var displacedThresholdValue: Double?
 	@Published public var displacedThresholdUnits: MeasurementType = .feet
-	@Published public var departureSids: [AirportDepartureSid]?
-	@Published public var intersections: [RunwayIntersection]?
+	
+	public let availableStarsViewModel: AvailableSTARsViewModel
+	public let availableSidsViewModel: AvailableSIDsViewModel
 	
 	public init(dataStore: DataStore, navigationContext: NavigationContextController) {
 		self.dataStore = dataStore
 		self.navigationContext = navigationContext
+		self.availableStarsViewModel = .init(existingStars: [], dataStore: dataStore, navigationContext: navigationContext)
+		self.availableSidsViewModel = .init(existingSids: [], dataStore: dataStore, navigationContext: navigationContext)
 	}
 	
 	public func save() {
+		guard let name = self.name,
+					 let length = length,
+					let tdz = self.touchDownZoneElevation,
+						let heading = heading,
+						let threshold = displacedThresholdValue else { return }
 		
+		let runway = AirportRunway(
+			name: name,
+			length: length,
+			touchDownZoneElevation: tdz,
+			heading: .init(value: heading, variation: nil),
+			displacedThreshold: .init(value: threshold, measurementType: self.displacedThresholdUnits),
+			departureSids: availableSidsViewModel.sids,
+			arrivalStars: availableStarsViewModel.stars,
+			intersections: [])
+		do {
+			try dataStore.save(runway: runway)
+			print("save successful")
+		} catch {
+			print("Unable to save runway: \(error)")
+		}
 	}
 	public func back() {
 		self.navigationContext.back()
-	}
-	
-	public var availableSidsViewModel: AvailableSIDsViewModel {
-		return .init(existingSids: [
-			.init(name: "CASTA ONE", waypoints: [], climbGradient: .init(value: 112, measurementType: .feet), initialRunwayHeading: .init(value: "120", variation: nil))
-		], dataStore: self.dataStore, navigationContext: self.navigationContext)
-	}
-	
-	public var availableStarsViewModel: AvailableSTARsViewModel {
-		return .init(existingStars: [
-			.init(name: "FIDEL", initialAltitude: 10000, waypoints: [], descentGradient: .init(value: -120, measurementType: .knots))
-		], dataStore: self.dataStore, navigationContext: self.navigationContext)
 	}
 }
 

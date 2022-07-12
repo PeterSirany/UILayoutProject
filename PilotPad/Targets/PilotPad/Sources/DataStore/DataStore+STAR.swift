@@ -13,7 +13,12 @@ import Models
 
 extension DataStoreImpl {
 	public func save(departureSid: AirportDepartureSid) throws {
-		
+		let entity = AirportDepartureSIDEntity(context: self.managedObjectContext)
+		try entity.save(sid: departureSid, context: self.managedObjectContext)
+	}
+	public func save(intersection: RunwayIntersection) throws {
+		let entity = RunwayIntersectionEntity(context: self.managedObjectContext)
+		try entity.save(intersection, context: self.managedObjectContext)
 	}
 	
 	public func save(arrivalStar: AirportArrivalStar) throws {
@@ -22,6 +27,7 @@ extension DataStoreImpl {
 	}
 	
 	public func save(runway: AirportRunway) throws {
-		
+		let entity = AirportRunwayEntity(context: self.managedObjectContext)
+		try entity.save(runway: runway, context: self.managedObjectContext)
 	}
 }

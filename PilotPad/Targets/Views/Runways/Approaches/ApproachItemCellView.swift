@@ -1,31 +1,33 @@
 //
-//  SID.swift
+//  ApproachItemCellView.swift
 //  Views
 //
-//  Created by Richard Poutier on 6/14/22.
+//  Created by Richard Poutier on 7/11/22.
 //  Copyright © 2022 Peter.Sirany. All rights reserved.
 //
 
 import Foundation
-import Models
 import SwiftUI
+import Models
 import Common
+import ViewModels
 
-public struct SIDItemCellView: View {
-	let sid: AirportDepartureSid
+public struct ApproachItemCellView: View {
+	
 	
 	public var body: some View {
 		HStack(spacing: Constants.itemCellSpacing) {
-			Text(sid.name.uppercased())
+			Text("Name")
 				.cellLabel()
-			Text(sid.initialRunwayHeading.value + "º")
+			Text("Final Crs")
 				.cellLabel()
 			Spacer()
 			// MARK: - TODO
 			// unsure if the following value is what's to be used
-			Text("\(Formatter.lengthFormatter.string(from: NSNumber(value: sid.waypoints.first?.altitude ?? 0)) ?? "N/A")")
+			Text("FAF Altitude")
 				.cellLabel()
 			Spacer()
 		}.borderedCell()
 	}
 }
+
